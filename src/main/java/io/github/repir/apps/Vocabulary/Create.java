@@ -2,7 +2,7 @@ package io.github.repir.apps.Vocabulary;
 
 import io.github.repir.tools.Lib.HDTools;
 import io.github.repir.Repository.Repository;
-import io.github.repir.EntityReader.IREFInputFormat;
+import io.github.repir.EntityReader.RepIRInputFormat;
 import io.github.repir.tools.Lib.ClassTools;
 import io.github.repir.tools.Lib.Log;
 import java.io.IOException;
@@ -45,8 +45,8 @@ public class Create extends Configured implements Tool {
       job.setReducerClass(Reduce.class);
       HDTools.getFS().delete(new Path(conf.get("repository.dir")), true);
       HDTools.getFS().mkdirs(new Path(conf.get("repository.dir")));
-      Class clazz = ClassTools.toClass(conf.getSubString("repository.inputformat", IREFInputFormat.class.getSimpleName()), IREFInputFormat.class.getPackage().getName());
-      Constructor c = ClassTools.getAssignableConstructor(clazz, IREFInputFormat.class, Job.class, String[].class);
+      Class clazz = ClassTools.toClass(conf.getSubString("repository.inputformat", RepIRInputFormat.class.getSimpleName()), RepIRInputFormat.class.getPackage().getName());
+      Constructor c = ClassTools.getAssignableConstructor(clazz, RepIRInputFormat.class, Job.class, String[].class);
       ClassTools.construct(c, job, conf.get("repository.inputdir").split(","));
       job.waitForCompletion(true);
       return 0;

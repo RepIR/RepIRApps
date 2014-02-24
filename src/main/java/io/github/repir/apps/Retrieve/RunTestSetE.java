@@ -49,7 +49,7 @@ public class RunTestSetE {
          RetrieverMRInputFormat.setIndex(repository);
          retriever.doJobDontWait(retriever.queue);
       }
-      log.info("%s started", conf.get("iref.conf"));
+      log.info("%s started", conf.get("repir.conf"));
    }
 
    public static ArrayList<Variant> getVariants(Repository repository) {

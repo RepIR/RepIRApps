@@ -2,7 +2,7 @@ package io.github.repir.apps.Repository;
 
 import io.github.repir.EntityReader.TermEntityKey;
 import io.github.repir.EntityReader.TermEntityValue;
-import io.github.repir.EntityReader.IREFInputFormat;
+import io.github.repir.EntityReader.RepIRInputFormat;
 import io.github.repir.tools.Lib.HDTools;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.StoredFeature;
@@ -49,8 +49,8 @@ public class Create extends Configured implements Tool {
       job.setMapperClass(RMap.class);
       job.setReducerClass(Reduce.class);
 
-      Class clazz = toClass(conf.getSubString("repository.inputformat", IREFInputFormat.class.getSimpleName()), IREFInputFormat.class.getPackage().getName());
-      Constructor c = getAssignableConstructor(clazz, IREFInputFormat.class, Job.class, String[].class);
+      Class clazz = toClass(conf.getSubString("repository.inputformat", RepIRInputFormat.class.getSimpleName()), RepIRInputFormat.class.getPackage().getName());
+      Constructor c = getAssignableConstructor(clazz, RepIRInputFormat.class, Job.class, String[].class);
       construct(c, job, conf.get("repository.inputdir").split(","));
 
       job.waitForCompletion(true);

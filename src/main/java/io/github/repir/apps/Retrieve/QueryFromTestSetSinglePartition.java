@@ -46,7 +46,7 @@ public class QueryFromTestSetSinglePartition {
       //QueryMetricAP ap = new QueryMetricAP();
       //ResultSet r = new ResultSet( ap, bm, qq);
       //r.calulateMeasure();
-      //log.info("query %d '%s' MAP=%f\n%s", qq.id, qq.query, r.result[1].avg, vu.nl.iref.tools.Lib.ArrayTools.toString(ap.curve));
+      //log.info("query %d '%s' MAP=%f\n%s", qq.id, qq.query, r.result[1].avg, ArrayTools.toString(ap.curve));
       int rank = 1;
       for (Document d : qq.queryresults) {
          log.printf("%d %d#%d %f %s %s", rank++, d.docid, d.partition, d.score,

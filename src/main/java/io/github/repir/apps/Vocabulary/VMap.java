@@ -40,8 +40,8 @@ public class VMap extends Mapper<LongWritable, EntityWritable, Text, LongWritabl
       repository = new Repository(context.getConfiguration());
       fs = repository.getFS();
       filesplit = ((FileSplit) context.getInputSplit());
-      extractor = new Extractor(repository);
-      all = (TermInverted) repository.getFeature(TermInverted.class, "all");
+      extractor = new Extractor(repository.getConfiguration());
+      all = TermInverted.get(repository, "all");
    }
 
    @Override
@@ -91,7 +91,6 @@ public class VMap extends Mapper<LongWritable, EntityWritable, Text, LongWritabl
          value.set(-t.getValue().df);
          context.write(term, value);
       }
-      Log.reportProfile();
    }
 
    protected void write(Context context, long threshold) throws IOException, InterruptedException {

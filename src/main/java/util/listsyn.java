@@ -14,7 +14,7 @@ public class listsyn {
       ArgsParser parsedargs = new ArgsParser(args, "configfile");
       Repository repository = new Repository(parsedargs.get("configfile"));
       
-      SynStats f = (SynStats) repository.getFeature(SynStats.class);
+      SynStats f = SynStats.get(repository);
       list(f);
    }
    

@@ -7,7 +7,7 @@ import io.github.repir.Repository.Pig.PigDoc;
 import io.github.repir.Repository.Pig.PigDoc.Tuple;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Document;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.tools.Lib.Log;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,9 +41,9 @@ public class DocMap extends Mapper<IntWritable, NullWritable, NullWritable, Null
    @Override
    public void map(IntWritable inkey, NullWritable invalue, Context context) throws IOException, InterruptedException {
       ArrayList<Tuple> tuples = new ArrayList<Tuple>();
-      DocLiteral title = (DocLiteral) repository.getFeature(DocLiteral.class, "literaltitle");
+      DocLiteral title = DocLiteral.get(repository, "literaltitle");
       CollectionID collid = repository.getCollectionIDFeature();
-      DocTF doctf = (DocTF) repository.getFeature(DocTF.class, "all");
+      DocTF doctf = DocTF.get(repository, "all");
       title.setPartition(inkey.get());
       title.readResident();
       collid.setPartition(inkey.get());
@@ -66,7 +66,7 @@ public class DocMap extends Mapper<IntWritable, NullWritable, NullWritable, Null
          t.tf = doctf.getValue();
          tuples.add(t);
       }
-      PigDoc d = (PigDoc) repository.getFeature(PigDoc.class);
+      PigDoc d = PigDoc.get(repository);
       d.openAppend();
       for (Tuple t : tuples) {
          d.write(t);

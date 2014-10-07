@@ -3,7 +3,7 @@ package io.github.repir.apps.Vocabulary;
 import io.github.repir.Repository.Repository;
 import io.github.repir.tools.Content.Datafile;
 import io.github.repir.tools.Lib.Log;
-import io.github.repir.tools.MapReduce.NullInputFormat;
+import io.github.repir.MapReduceTools.NullInputFormat;
 import io.github.repir.tools.hadoop.Job;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;

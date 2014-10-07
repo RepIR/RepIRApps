@@ -22,7 +22,7 @@ public class ShowERRSig {
       testset.getQrels();
       testset.purgeTopics();
       log.info("valid topics %d", testset.topics.size());
-      String systems[] = parsedargs.getRepeatedGroup("resultsext");
+      String systems[] = parsedargs.getStrings("resultsext");
       ResultSets resultset = new ResultSets( new QueryMetricERR(20), testset, systems);
       log.printf("baseline %f", resultset.get(0).getMean());
       for (int i = 1; i < systems.length; i++) {

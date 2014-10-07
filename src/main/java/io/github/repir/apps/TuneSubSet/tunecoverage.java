@@ -8,7 +8,7 @@ import io.github.repir.TestSet.TestSet;
 import io.github.repir.tools.ByteSearch.ByteRegex;
 import io.github.repir.tools.Content.Datafile;
 import io.github.repir.tools.Content.EOCException;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.tools.Lib.Log;
 import java.util.Collection;
 import java.util.HashSet;

@@ -8,7 +8,7 @@ import io.github.repir.Retriever.Retriever;
 import io.github.repir.Retriever.Query;
 import io.github.repir.tools.Lib.Log;
 import io.github.repir.TestSet.Metric.QueryMetricAP;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.TestSet.Metric.QueryMetricPrecision;
 import io.github.repir.TestSet.Metric.QueryMetricRecall;
 import io.github.repir.TestSet.ResultSet;
@@ -32,7 +32,7 @@ public class QueryFromTestSetNoMR {
       Query qq = testset.getQuery(topic, retriever);
       int qrelid = testset.getQRelId(qq);
       qq.addFeature(repository.getCollectionIDFeature());
-      DocLiteral literaltitle = (DocLiteral)repository.getFeature(DocLiteral.class, "literaltitle");
+      DocLiteral literaltitle = DocLiteral.get(repository, "literaltitle");
       qq.addFeature(literaltitle);
       if (conf.getStrings("query").length > 0) {
          qq.originalquery = StrTools.concat(' ', conf.getStrings("query"));
@@ -43,7 +43,6 @@ public class QueryFromTestSetNoMR {
       ResultSet r = new ResultSet( ap, testset, q);
       ResultSet r2 = new ResultSet( new QueryMetricPrecision(1000), testset, q);
       ResultSet r3 = new ResultSet( new QueryMetricRecall(1000), testset, q);
-      Log.reportProfile();
       log.info("query %d '%s' MAP=%f P@1000-%f R@1000=%f\n%s", q.id, q.query, 
               r.queryresult[0], 
               r2.queryresult[0], 

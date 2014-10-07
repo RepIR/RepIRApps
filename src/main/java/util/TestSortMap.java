@@ -5,8 +5,8 @@ import io.github.repir.apps.Vocabulary.RecoverMap;
 import io.github.repir.apps.Vocabulary.Reduce;
 import io.github.repir.tools.Content.Datafile;
 import io.github.repir.tools.Lib.Log;
-import io.github.repir.tools.MapReduce.Configuration;
-import io.github.repir.tools.MapReduce.NullInputFormat;
+import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.NullInputFormat;
 import io.github.repir.tools.Structure.StructuredDataStream;
 import io.github.repir.tools.Structure.StructuredFileSort;
 import io.github.repir.tools.Structure.StructuredFileSortRecord;
@@ -56,7 +56,7 @@ public class TestSortMap extends Mapper<IntWritable, NullWritable, NullWritable,
         f.closeWrite();
         int count = 0;
         f.openRead();
-        while (f.next()) {
+        while (f.nextRecord()) {
             count++;
         }
         f.closeRead();

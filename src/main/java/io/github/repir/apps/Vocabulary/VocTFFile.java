@@ -82,7 +82,7 @@ public class VocTFFile extends StructuredFileSort {
        setDatafile(tempfile);
        openRead();
        long count = 0;
-       while (next()) {
+       while (nextRecord()) {
            log.printf("%s %d", this.term.value, this.cf.value);
            count++;
        }
@@ -92,7 +92,7 @@ public class VocTFFile extends StructuredFileSort {
    protected void checkCount2() {
        openRead();
        long count = 0;
-       while (next()) {
+       while (nextRecord()) {
            log.printf("%s %d", this.term.value, this.cf.value);
            count++;
        }
@@ -115,7 +115,7 @@ public class VocTFFile extends StructuredFileSort {
          long lastoffset = 0, segmentoffset = getOffset();
          long lastmin = 0;
          segments = 0;
-         while (next()) {
+         while (nextRecord()) {
              if (this.cf.value > lastmin && lastoffset > segmentoffset) {
                 StructuredFileSort segment = (StructuredFileSort) this.clone();
                 segment.setOffset(segmentoffset);

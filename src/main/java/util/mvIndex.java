@@ -5,7 +5,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.tools.ByteSearch.ByteSearch;
 import io.github.repir.tools.Content.Datafile;
 import io.github.repir.tools.Content.HDFSDir;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.tools.Lib.Log;
 
 /**

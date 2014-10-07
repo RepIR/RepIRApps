@@ -25,7 +25,7 @@ public class TestSort {
         f.closeWrite();
         int count = 0;
         f.openRead();
-        while (f.next())
+        while (f.nextRecord())
             count++;
         f.closeRead();
         log.info("count %d", count);

@@ -5,7 +5,7 @@ import io.github.repir.EntityReader.MapReduce.TermEntityValue;
 import io.github.repir.Repository.AutoTermDocumentFeature;
 import io.github.repir.Repository.EntityStoredFeature;
 import io.github.repir.Repository.Feature;
-import io.github.repir.Repository.ReducibleFeature;
+import io.github.repir.Repository.ReduciblePartitionedFeature;
 import io.github.repir.Repository.Repository;
 import io.github.repir.tools.Lib.Log;
 import io.github.repir.tools.hadoop.Job;
@@ -32,7 +32,7 @@ public class Reduce extends Reducer<TermEntityKey, TermEntityValue, TermEntityKe
       
       for (String featurename : repository.configuredStrings("repository.constructfeatures")) {
          Feature f = repository.getFeature(featurename);
-         if (f instanceof ReducibleFeature) {
+         if (f instanceof ReduciblePartitionedFeature) {
             if (f instanceof EntityStoredFeature) {
                documentfeatures.add((EntityStoredFeature) f);
             } else if (f instanceof AutoTermDocumentFeature) {
@@ -44,15 +44,11 @@ public class Reduce extends Reducer<TermEntityKey, TermEntityValue, TermEntityKe
       }
       int mempart = MAXMEMORY / (4096 * (termdocfeatures.size() * 2 + documentfeatures.size()));
       for (EntityStoredFeature dc : documentfeatures) {
-         dc.setPartition(partition);
-         dc.setBufferSize(4096 * mempart);
-         dc.startReduce(partition);
+         dc.startReduce(partition, 4096 * mempart);
       }
       for (AutoTermDocumentFeature tc : termdocfeatures) {
-         tc.setPartition(partition);
-         tc.setBufferSize(4096 * 2 * mempart);
          tc.setDocs(doclist);
-         tc.startReduce(partition);
+         tc.startReduce(partition, 4096 * 2 * mempart);
       }
    }
 
@@ -60,11 +56,11 @@ public class Reduce extends Reducer<TermEntityKey, TermEntityValue, TermEntityKe
    public void reduce(TermEntityKey key, Iterable<TermEntityValue> values, Context context)
            throws IOException, InterruptedException {
       Job.reduceReport(context);
-      if (key.getType() == TermEntityKey.Type.PRELOAD) {
-         documentfeatures.get(key.feature).writereduce(key, values);
-      } else if (key.getType() == TermEntityKey.Type.CHANNEL) {
+      if (key.getType() != TermEntityKey.Type.TERMDOCFEATURE) {
+         documentfeatures.get(key.feature).writeReduce(key, values);
+      } else if (key.getType() == TermEntityKey.Type.TERMDOCFEATURE) {
          key.docid = doclist.get(key.collectionid); // convert collectionid to docid
-         termdocfeatures.get(key.feature).writereduce(key, values);
+         termdocfeatures.get(key.feature).reduceInput(key, values);
       }
       context.progress();
    }

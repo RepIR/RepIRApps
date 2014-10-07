@@ -24,15 +24,15 @@ public class ShowDocument {
 
    public static void main(String args[]) {
       Repository repository = new Repository(args, "documentid partitionnr");
-      TermString termstring = (TermString) repository.getFeature(TermString.class);
+      TermString termstring = TermString.get(repository);
       termstring.loadMem(100000);
       Retriever retriever = new Retriever(repository);
       int docid = repository.configuredInt("documentid");
       int partition = repository.configuredInt("partitionnr");
       Query q = retriever.constructQueryRequest("test");
-      DocTF doctf = (DocTF)repository.getFeature(DocTF.class, "all");
+      DocTF doctf = DocTF.get(repository, "all");
       CollectionID collectionid = repository.getCollectionIDFeature();
-      DocLiteral title = (DocLiteral)repository.getFeature(DocLiteral.class, "literaltitle");
+      DocLiteral title = DocLiteral.get(repository, "literaltitle");
       q.addFeature(collectionid);
       q.addFeature(title);
       q.addFeature(doctf);
@@ -40,7 +40,7 @@ public class ShowDocument {
       Document doc = rm.createDocument(docid, partition);
       ArrayList<Document> docs = new ArrayList<Document>();
       docs.add(doc);
-      DocForward fw = (DocForward)repository.getFeature(DocForward.class, "all");
+      DocForward fw = DocForward.get(repository, "all");
       fw.read(doc);
       int[] value = fw.getValue();
       retriever.readReportedStoredFeatures(docs, rm.getReportedStoredFeatures(), partition);

@@ -49,6 +49,8 @@ public class Create {
       repository.getConfiguration().setBoolean("mapred.map.tasks.speculative.execution", false);
       repository.getConfiguration().setBoolean("mapred.reduce.tasks.speculative.execution", false);
       
+      log.info("mapreduce.job.queuename %s", repository.configuredString("mapreduce.job.queuename"));
+      
       Job job = new Job(repository.getConfiguration(), 
               "Repository Builder " + repository.configuredString("repository.prefix"));
       int partitions = repository.configuredInt("repository.onlypartition", -1);
@@ -64,8 +66,8 @@ public class Create {
       job.setMapOutputValueClass(TermEntityValue.class);
       job.setOutputKeyClass(NullWritable.class);
       job.setOutputValueClass(NullWritable.class);
-
-      job.setMapperClass(RMap.class);
+      
+      job.setMapperClass(Map.class);
       job.setReducerClass(Reduce.class);
 
       Class clazz = toClass(repository.configuredString("repository.inputformat", EntityReaderInputFormat.class.getSimpleName()), EntityReaderInputFormat.class.getPackage().getName());

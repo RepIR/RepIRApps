@@ -4,7 +4,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Query;
 import io.github.repir.tools.Lib.Log;
 import java.util.ArrayList;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.Retriever.Query.Variant;
 import io.github.repir.Retriever.Tuner.Retriever;
 import io.github.repir.TestSet.TestSet;

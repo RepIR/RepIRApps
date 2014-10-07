@@ -22,10 +22,9 @@ public class QueryFromArgsNoMR {
       int rank = 1;
       Query q1 = retriever.constructQueryRequest(StrTools.concat(' ', repository.configuredStringList("query")));
       q1.addFeature(repository.getCollectionIDFeature());
-      DocLiteral literaltitle = (DocLiteral)repository.getFeature(DocLiteral.class, "literaltitle");
+      DocLiteral literaltitle = DocLiteral.get(repository, "literaltitle");
       q1.addFeature(literaltitle);
       q1 = retriever.retrieveQuery(q1);
-      Log.reportProfile();
       for (Document d : q1.getQueryResults()) {
          log.printf("%d %5d#%3d %f %s %s", rank++, d.docid, d.partition, d.score,
                  d.getString(repository.getCollectionIDFeature()), 

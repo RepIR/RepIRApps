@@ -26,7 +26,7 @@ public class ResultsToExcel {
       ArgsParser parsedargs = new ArgsParser(args, "configfile {resultsext}");
       Repository repository = new Repository(parsedargs.get("configfile"));
       TestSet testset = new TestSet( repository );
-      ResultSets resultsets = new ResultSets( new QueryMetricAP(), testset, parsedargs.getRepeatedGroup("resultsext"));
+      ResultSets resultsets = new ResultSets( new QueryMetricAP(), testset, parsedargs.getStrings("resultsext"));
       ExcelDoc workbook = new ExcelDoc(repository.configuredString("testset.name") + ".xlsx");
       ExcelSheet querysheet = workbook.getSheet("queries");
       querysheet.setRow(0, 0, "nr", "original query", "system");

@@ -22,7 +22,7 @@ public class findphrase {
       ArgsParser parsedargs = new ArgsParser(args, "configfile {queryterm}");
       Repository repository = new Repository(parsedargs.get("configfile"));
       Retriever retriever = new Retriever(repository);
-      Query q = retriever.constructQueryRequest(StrTools.concat(' ', parsedargs.getRepeatedGroup("queryterm")));
+      Query q = retriever.constructQueryRequest(StrTools.concat(' ', parsedargs.getStrings("queryterm")));
       RetrievalModel rm = (RetrievalModel)retriever.constructStrategy(q);
       rm.prepareAggregation();
       ArrayList<Record> list = new ArrayList<Record>();
@@ -34,7 +34,7 @@ public class findphrase {
             list.add(r);
          }
       }
-      ProximityStats f = (ProximityStats) repository.getFeature(ProximityStats.class);
+      ProximityStats f = ProximityStats.get(repository);
       for (Record r : list) {
          r = (Record)f.find(r);
          if (r != null)

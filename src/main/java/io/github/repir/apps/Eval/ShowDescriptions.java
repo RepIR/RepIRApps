@@ -6,7 +6,7 @@ import io.github.repir.tools.Lib.Log;
 import java.util.Map;
 import java.util.TreeMap;
 import io.github.repir.TestSet.Topic.TestSetTopic;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 
 /**
  * Shows the topics from the test set in the config file

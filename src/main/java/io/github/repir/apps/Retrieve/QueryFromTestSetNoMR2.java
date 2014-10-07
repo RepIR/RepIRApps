@@ -7,7 +7,7 @@ import io.github.repir.Retriever.Document;
 import io.github.repir.Retriever.Retriever;
 import io.github.repir.Retriever.Query;
 import io.github.repir.tools.Lib.Log;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.tools.Lib.StrTools;
 
 /**
@@ -26,15 +26,13 @@ public class QueryFromTestSetNoMR2 {
       TestSet bm = new TestSet(repository);
       int topic = conf.getInt("topicid", 0);
       Query qq = bm.getQuery(topic, retriever);
-      DocLiteral literaltitle = (DocLiteral)repository.getFeature(DocLiteral.class, "literaltitle");
+      DocLiteral literaltitle = DocLiteral.get(repository, "literaltitle");
       qq.addFeature(literaltitle);
       if (conf.getStrings("query").length > 0) {
          qq.originalquery = StrTools.concat(' ', conf.getStrings("query"));
          qq.query = retriever.tokenizeString(qq.originalquery);
       }
       Query q = retriever.retrieveQuery(qq);
-
-      Log.reportProfile();
       
       int rank = 1;
       for (Document d : q.getQueryResults()) {

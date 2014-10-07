@@ -20,18 +20,18 @@ public class ShowDocumentByCollectionID {
    public static void main(String args[]) {
       Repository repository = new Repository(args, "documentid partitionnr");
       int partition = repository.configuredInt("partitionnr");
-      TermString termstring = (TermString) repository.getFeature(TermString.class);
+      TermString termstring = TermString.get(repository);
       termstring.loadMem(100000);
       CollectionID collectionid = repository.getCollectionIDFeature();
       collectionid.setPartition(partition);
       int docid = collectionid.findLiteral( repository.configuredString("collectionid") );
       if (docid >= 0) {
          Document doc = new Document(docid, partition);
-         DocForward fw = (DocForward)repository.getFeature(DocForward.class, "all");
+         DocForward fw = DocForward.get(repository, "all");
          fw.read(doc);
          int[] value = fw.getValue();
-         DocTF doctf = (DocTF)repository.getFeature(DocTF.class, "all");
-         DocLiteral title = (DocLiteral)repository.getFeature(DocLiteral.class, "literaltitle");
+         DocTF doctf = DocTF.get(repository, "all");
+         DocLiteral title = DocLiteral.get(repository, "literaltitle");
          doctf.read(doc);
          title.read(doc);
          log.printf("doctf[0]=%d", doctf.getValue());

@@ -14,7 +14,7 @@ public class listphrase {
       ArgsParser parsedargs = new ArgsParser(args, "configfile");
       Repository repository = new Repository(parsedargs.get("configfile"));
       
-      ProximityStats f = (ProximityStats) repository.getFeature(ProximityStats.class);
+      ProximityStats f = ProximityStats.get(repository);
       list(f);
    }
    

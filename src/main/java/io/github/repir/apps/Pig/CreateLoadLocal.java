@@ -24,22 +24,22 @@ public class CreateLoadLocal {
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args[0]);
       FSDir dir = new FSDir(repository.configuredString("rr.localdir") + "pig/" + repository.getPrefix());
-      PigTerm term = (PigTerm)repository.getFeature(PigTerm.class);
+      PigTerm term = PigTerm.get(repository);
       Datafile scriptfile = dir.getFile("terms");
       scriptfile.printf("terms = %s", term.loadLocalScript());
       scriptfile.closeWrite();
-      PigDoc doc = (PigDoc)repository.getFeature(PigDoc.class);
+      PigDoc doc = PigDoc.get(repository);
       scriptfile = dir.getFile("docs");
       scriptfile.printf("docs = %s", doc.loadLocalScript());
       scriptfile.closeWrite();
 
       HashSet<String> keywords = getKeywords(repository);
       for (String w : keywords) {
-         PigTermDoc termdoc = (PigTermDoc) repository.getFeature(PigTermDoc.class, w);
+         PigTermDoc termdoc = PigTermDoc.get(repository, w);
             scriptfile = dir.getFile("postings_" + w);
             scriptfile.printf("postings_%s = %s", w, termdoc.loadLocalScript());
             scriptfile.closeWrite();
-         PigTermDocPos termdocpos = (PigTermDocPos) repository.getFeature(PigTermDocPos.class, w);
+         PigTermDocPos termdocpos = PigTermDocPos.get(repository, w);
             scriptfile = dir.getFile("pospostings_" + w);
             scriptfile.printf("pospostings_%s = %s", w, termdocpos.loadLocalScript());
             scriptfile.closeWrite();

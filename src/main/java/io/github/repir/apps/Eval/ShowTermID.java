@@ -17,9 +17,9 @@ public class ShowTermID {
    public static void main(String args[]) {
       Repository repository = new Repository(args, "[termid]");
       Retriever retriever = new Retriever(repository);
-      TermString termstring = (TermString) repository.getFeature(TermString.class);
-      TermDF df = (TermDF) repository.getFeature(TermDF.class);
-      TermCF cf = (TermCF) repository.getFeature(TermCF.class);
+      TermString termstring = TermString.get(repository);
+      TermDF df = TermDF.get(repository);
+      TermCF cf = TermCF.get(repository);
       if (repository.getConfiguration().containsKey("termid")) {
           int termid = repository.configuredInt("termid");
           String s = termstring.readValue(termid);

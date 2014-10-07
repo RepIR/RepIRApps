@@ -5,7 +5,7 @@ import io.github.repir.EntityReader.MapReduce.TermEntityKey;
 import io.github.repir.EntityReader.MapReduce.TermEntityValue;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.StoredFeature;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import static io.github.repir.tools.Lib.ClassTools.*;
 import io.github.repir.tools.Lib.Log;
 import io.github.repir.tools.hadoop.Job;

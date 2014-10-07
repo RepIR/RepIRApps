@@ -22,7 +22,7 @@ public class delsyn {
       ArgsParser parsedargs = new ArgsParser(args, "configfile {queryterm}");
       Repository repository = new Repository(parsedargs.get("configfile"));
       Retriever retriever = new Retriever(repository);
-      Query q = retriever.constructQueryRequest(StrTools.concat(' ', parsedargs.getRepeatedGroup("queryterm")));
+      Query q = retriever.constructQueryRequest(StrTools.concat(' ', parsedargs.getStrings("queryterm")));
       RetrievalModel rm = (RetrievalModel)retriever.constructStrategy(q);
       rm.prepareAggregation();
       ArrayList<Record> list = new ArrayList<Record>();
@@ -35,7 +35,7 @@ public class delsyn {
             list.add(r);
          }
       }
-      SynStats f = (SynStats) repository.getFeature(SynStats.class);
+      SynStats f = SynStats.get(repository);
       f.remove(list);
       list(f);
    }

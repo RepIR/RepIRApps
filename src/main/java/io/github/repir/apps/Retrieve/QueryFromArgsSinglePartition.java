@@ -7,7 +7,7 @@ import io.github.repir.Retriever.Retriever;
 import io.github.repir.Retriever.Query;
 import io.github.repir.tools.Lib.Log;
 import io.github.repir.Strategy.Collector.CollectorDocument;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.Strategy.Strategy;
 import io.github.repir.tools.Lib.StrTools;
 
@@ -28,7 +28,7 @@ public class QueryFromArgsSinglePartition {
       int partition = conf.getInt("partitionnr", 0);
       String querystring = StrTools.concat(' ', conf.getStrings("query"));
       Query qq = retriever.constructQueryRequest(querystring);
-      DocLiteral literaltitle = (DocLiteral)repository.getFeature(DocLiteral.class, "literaltitle");
+      DocLiteral literaltitle = DocLiteral.get(repository, "literaltitle");
       qq.addFeature(literaltitle);
       qq.addFeature(repository.getCollectionIDFeature());
       Strategy result = retriever.retrieveSegment(qq, partition);

@@ -3,7 +3,7 @@ package util;
 import io.github.repir.tools.Lib.Log;
 import io.github.repir.Repository.PartitionLocation;
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 
 /**
  * This is a separate util to create a lookup table in the repository for the primary location of

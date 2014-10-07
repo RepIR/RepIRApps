@@ -23,7 +23,7 @@ public class QueryFromArgs {
       Repository repository = new Repository(args, "{query}");
       repository.getConfiguration().setPriorityHigh();
       Retriever retriever = new Retriever(repository);
-      DocLiteral literaltitle = (DocLiteral)repository.getFeature(DocLiteral.class, "literaltitle");
+      DocLiteral literaltitle = DocLiteral.get(repository, "literaltitle");
       Query q = retriever.constructQueryRequest(StrTools.concat(' ', repository.configuredStrings("query")));
       q.addFeature(repository.getCollectionIDFeature());
       q.addFeature(literaltitle);

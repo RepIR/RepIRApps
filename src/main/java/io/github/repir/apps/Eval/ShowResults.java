@@ -24,8 +24,8 @@ public class ShowResults {
       ArgsParser parsedargs = new ArgsParser(args, "configfile resultsext topicid");
       Repository repository = new Repository(parsedargs.get("configfile"));
       TestSet testset = new TestSet( repository );
-      DocLiteral title = (DocLiteral)repository.getFeature(DocLiteral.class, "literaltitle");
-      int topic = parsedargs.getInt("topicid");
+      DocLiteral title = DocLiteral.get(repository, "literaltitle");
+      int topic = parsedargs.getInt("topicid", 0);
       ResultFileRR results = testset.getResults(parsedargs.get("resultsext"));
       Collection<Query> results1 = results.getResults();
       int rank = 1;

@@ -25,8 +25,8 @@ public class ShowTerm {
       log.info("%s %s", q.query, term.getProcessedTerm());
 
       log.info("termid %d", term.getID());
-      TermDF df = (TermDF) repository.getFeature(TermDF.class);
-      TermCF cf = (TermCF) repository.getFeature(TermCF.class);
+      TermDF df = TermDF.get(repository);
+      TermCF cf = TermCF.get(repository);
       df.openRead();
       cf.openRead();
       log.info("Term %d string %s stem %s df %d cf %d", term.getID(), term.getOriginalTerm(), term.getProcessedTerm(), df.readValue(term.getID()), cf.readValue(term.getID()));

@@ -31,7 +31,7 @@ public class TunerToFile {
       for (int coll = 0; coll < collections.length; coll++) {
          results[coll] = new HashMap<String, Double>();
          repository = new Repository(collections[coll]);
-         ModelParameters modelparameters = (ModelParameters)repository.getFeature(ModelParameters.class, repository.configurationName());
+         ModelParameters modelparameters = ModelParameters.get(repository, repository.configurationName());
          if (variants == null) {
             parameters = repository.getStoredFreeParameters();
             Retriever retriever = new Retriever(repository);

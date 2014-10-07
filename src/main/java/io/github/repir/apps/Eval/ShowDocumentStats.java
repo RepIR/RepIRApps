@@ -21,15 +21,15 @@ public class ShowDocumentStats {
 
    public static void main(String args[]) {
       Repository repository = new Repository(args, "documentid partitionnr");
-      TermString termstring = (TermString) repository.getFeature(TermString.class);
+      TermString termstring = TermString.get(repository);
       termstring.loadMem(100000);
       Retriever retriever = new Retriever(repository);
       int docid = repository.configuredInt("documentid");
       int partition = repository.configuredInt("partitionnr");
       Query q = retriever.constructQueryRequest("test");
-      DocTF doctf = (DocTF)repository.getFeature(DocTF.class, "all");
+      DocTF doctf = DocTF.get(repository, "all");
       DocLiteral collectionid = repository.getCollectionIDFeature();
-      DocLiteral title = (DocLiteral)repository.getFeature(DocLiteral.class, "literaltitle");
+      DocLiteral title = DocLiteral.get(repository, "literaltitle");
       q.addFeature(collectionid);
       q.addFeature(title);
       q.addFeature(doctf);

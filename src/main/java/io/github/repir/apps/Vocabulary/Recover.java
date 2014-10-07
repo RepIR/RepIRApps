@@ -22,7 +22,7 @@ public class Recover {
       
       SegmentsFile segments = new SegmentsFile(tffile);
       segments.openRead();
-      while (segments.next()) {
+      while (segments.nextRecord()) {
           log.info("%s %s %s", segments.segment.get(), segments.offset.get(), segments.ceiling.get());
           StructuredFileSort segment = (StructuredFileSort) tffile.clone();
           segment.setOffset(segments.offset.get());

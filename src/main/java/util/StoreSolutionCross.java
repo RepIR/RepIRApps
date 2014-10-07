@@ -24,7 +24,7 @@ public class StoreSolutionCross {
       HashMap<Record, Record> results[] = new HashMap[repositories.length];
       for (int i = 0; i < repositories.length; i++) {
          results[i] = new HashMap<Record, Record>();
-         ModelParameters modelparameters = (ModelParameters) repository.getFeature(ModelParameters.class, repositories[i].configurationName());
+         ModelParameters modelparameters = ModelParameters.get(repository, repositories[i].configurationName());
          modelparameters.setDataBufferSize(1000000);
          modelparameters.openRead();
          for (Record r : modelparameters.getKeys()) {

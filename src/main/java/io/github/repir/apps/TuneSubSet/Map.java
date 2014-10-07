@@ -4,7 +4,7 @@ import io.github.repir.tools.Content.Datafile;
 import io.github.repir.tools.Lib.Log;
 import java.io.IOException;
 import java.util.HashMap;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
@@ -46,7 +46,7 @@ public class Map extends Mapper<LongWritable, Text, NullWritable, NullWritable> 
                sf.openWrite();
                spamfiles.put(directory, sf);
             }
-            sf.cluewebid.write(cluewebid);
+            sf.documentid.write(cluewebid);
          }
       }
    }

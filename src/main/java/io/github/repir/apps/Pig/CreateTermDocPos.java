@@ -25,7 +25,7 @@ public class CreateTermDocPos {
       StringPigJob job = new StringPigJob(repository);
       HashSet<String> keywords = getKeywords(repository);
       for (String w : keywords) {
-         PigTermDocPos termdoc = (PigTermDocPos) repository.getFeature(PigTermDocPos.class, w);
+         PigTermDocPos termdoc = PigTermDocPos.get(repository, w);
          if (!termdoc.getFile().exists()) {
             job.addTerm(w);
          }

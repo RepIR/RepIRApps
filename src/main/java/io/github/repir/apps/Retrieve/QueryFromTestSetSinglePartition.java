@@ -8,7 +8,7 @@ import io.github.repir.Retriever.Retriever;
 import io.github.repir.Retriever.Query;
 import io.github.repir.tools.Lib.Log;
 import io.github.repir.Strategy.Collector.CollectorDocument;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.Strategy.Strategy;
 import io.github.repir.tools.Lib.StrTools;
 
@@ -34,11 +34,10 @@ public class QueryFromTestSetSinglePartition {
          qq.originalquery = StrTools.concat(' ', conf.getStrings("query"));
          qq.query = retriever.tokenizeString(qq.originalquery);
       }
-      DocLiteral literaltitle = (DocLiteral)repository.getFeature(DocLiteral.class, "literaltitle");
+      DocLiteral literaltitle = DocLiteral.get(repository, "literaltitle");
       qq.addFeature(literaltitle);
       qq.addFeature(repository.getCollectionIDFeature());
       Strategy result = retriever.retrieveSegment(qq, partition);
-      Log.reportProfile();
       for (Document d : (((CollectorDocument)result.collectors.get(0)).getRetrievedDocs()))
          qq.add(d);
       //QueryMetricAP ap = new QueryMetricAP();

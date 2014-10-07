@@ -17,12 +17,12 @@ public class ShowTerms {
    public static void main(String args[]) {
       Repository repository = new Repository(args[0]);
       Retriever retriever = new Retriever(repository);
-      TermString termstring = (TermString) repository.getFeature(TermString.class);
-      termstring.setBufferSize(10000000);
-      TermDF df = (TermDF) repository.getFeature(TermDF.class);
-      df.setBufferSize(10000000);
-      TermCF cf = (TermCF) repository.getFeature(TermCF.class);
-      cf.setBufferSize(10000000);
+      TermString termstring = TermString.get(repository);
+      termstring.getFile().setBufferSize(10000000);
+      TermDF df = TermDF.get(repository);
+      df.getFile().setBufferSize(10000000);
+      TermCF cf = TermCF.get(repository);
+      cf.getFile().setBufferSize(10000000);
          for (int termid = 0; termid < repository.getVocabularySize(); termid++) {
           String s = termstring.readValue(termid);
           log.printf("%s df %d cf %d", s, df.readValue(termid), cf.readValue(termid));            

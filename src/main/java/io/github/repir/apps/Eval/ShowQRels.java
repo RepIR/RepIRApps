@@ -4,7 +4,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.TestSet.Qrel.QRel;
 import io.github.repir.TestSet.TestSet;
 import io.github.repir.tools.Lib.Log;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;

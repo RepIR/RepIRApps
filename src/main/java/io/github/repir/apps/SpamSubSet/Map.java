@@ -2,7 +2,7 @@ package io.github.repir.apps.SpamSubSet;
 
 import io.github.repir.EntityReader.SpamFile;
 import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.tools.Lib.Log;
 import java.io.IOException;
 import java.util.HashMap;

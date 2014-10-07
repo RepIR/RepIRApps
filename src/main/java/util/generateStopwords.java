@@ -4,7 +4,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.Stopwords.StopwordsCache;
 import io.github.repir.Repository.TermString;
 import io.github.repir.Repository.Stopwords.StopWords;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.tools.Lib.Log; 
 
 /**
@@ -17,13 +17,13 @@ public class generateStopwords {
    public static void main(String[] args) {
       Configuration conf = new Configuration(args[0]);
       Repository repository = new Repository( conf );
-      StopwordsCache sw = (StopwordsCache)repository.getFeature(StopwordsCache.class);
+      StopwordsCache sw = StopwordsCache.get(repository);
       sw.openRead();
       HashSet<Integer> list = sw.getStopwords();
       list.clear();
       StopWords slist = StopWords.get(repository);
       HashSet<String> stemmedset = slist.getStemmedFilterSet();
-      TermString termstring = (TermString)repository.getFeature(TermString.class);
+      TermString termstring = TermString.get(repository);
       termstring.loadMem(500000);
       for (int i = repository.getVocabularySize() - 1; i >= 0 ; i--) {
          String t = termstring.readValue(i);

@@ -32,7 +32,7 @@ public class RecoverMap extends Mapper<IntWritable, NullWritable, Text, LongWrit
       
       VocTFFile tffile = new VocTFFile(CreateRecover.getVocTFInFile(repository));
       tffile.openRead();
-      while (tffile.next()) {
+      while (tffile.nextRecord()) {
           term.set(tffile.term.value);
           value.set(tffile.cf.value);
           context.write(term, value);

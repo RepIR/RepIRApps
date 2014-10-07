@@ -34,7 +34,7 @@ public class delphrase {
             list.add(r);
          }
       }
-      ProximityStats f = (ProximityStats) repository.getFeature(ProximityStats.class);
+      ProximityStats f = ProximityStats.get(repository);
       f.remove(list);
       list(f);
    }

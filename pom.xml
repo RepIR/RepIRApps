@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.github.repir</groupId>
         <artifactId>RepIRProx</artifactId>
-        <version>0.24-SNAPSHOT</version>
+        <version>0.25-SNAPSHOT</version>
         <relativePath>../RepIRProx/pom.xml</relativePath>
     </parent>
     <artifactId>RepIRApps</artifactId>
@@ -135,20 +135,24 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>RepIRTools</artifactId>
-            <version>${project.version}</version>
             <type>jar</type>
             <exclusions>
                 <exclusion>
-                    <artifactId>hadoop-core</artifactId>
-                    <groupId>com.cloudera.hadoop</groupId>
+                    <artifactId>hadoop-client</artifactId>
+                    <groupId>org.apache.hadoop</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>RepIR</artifactId>
-            <version>${project.version}</version>
             <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hadoop-client</artifactId>
+                    <groupId>org.apache.hadoop</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>

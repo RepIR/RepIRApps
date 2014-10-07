@@ -27,7 +27,7 @@ public class QueryFromTestSet {
       TestSet testset = new TestSet(repository);
       int topic = repository.configuredInt("topicid", 0);
       Query q = testset.getQuery(topic, retriever);
-      DocLiteral literaltitle = (DocLiteral)repository.getFeature(DocLiteral.class, "literaltitle");
+      DocLiteral literaltitle = DocLiteral.get(repository, "literaltitle");
       q.addFeature(literaltitle);
       if (repository.getConfiguration().getStrings("query").length > 0) {
          q.originalquery = StrTools.concat(' ', repository.configuredStrings("query"));

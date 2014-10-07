@@ -22,7 +22,7 @@ public class StoreSolutionFold {
 
    public StoreSolutionFold(Repository repository) {
       HashMap<Record, Record> results[] = new HashMap[folds];
-      ModelParameters modelparameters = (ModelParameters) repository.getFeature(ModelParameters.class, repository.configurationName());
+         ModelParameters modelparameters = ModelParameters.get(repository, repository.configurationName());
       modelparameters.setDataBufferSize(1000000);
       modelparameters.openRead();
       for (int fold = 0;fold < folds; fold++) 

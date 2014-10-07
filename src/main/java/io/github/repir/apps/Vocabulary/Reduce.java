@@ -65,17 +65,17 @@ public class Reduce extends Reducer<Text, LongWritable, NullWritable, NullWritab
    }
    
    public static void writeVoc(Repository repository, ArrayList<DictionaryFeature> features) {
-      int doccount = repository.getDocumentCount();
+      long doccount = repository.getDocumentCount();
       long voccount = repository.getVocabularySize();
       for (DictionaryFeature f : features) {
-         f.startReduce(voccount, doccount);
+         f.startReduce(voccount, (int)doccount);
       }
       long cf = 0;
       int id = 0;
       VocTFFile tffile = VocTFFile.getVocTFFile(repository);
       tffile.setBufferSize(10000000);
       tffile.openRead();
-      while (tffile.next()) { // traverse terms in order of cf
+      while (tffile.nextRecord()) { // traverse terms in order of cf
          for (DictionaryFeature f : features) { // write to all DictionaryFeatures
             f.reduceInput(id, tffile.term.value, tffile.cf.value, tffile.df.value);
          }

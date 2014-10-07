@@ -28,8 +28,8 @@ public class CreateTerm {
       Repository repository = new Repository(args[0]);
       HashSet<String> keywords = getKeywords(repository);
       ArrayList<Tuple> tuples = new ArrayList<Tuple>();
-      TermCF termcf = (TermCF) repository.getFeature(TermCF.class);
-      TermDF termdf = (TermDF) repository.getFeature(TermDF.class);
+      TermCF termcf = TermCF.get(repository);
+      TermDF termdf = TermDF.get(repository);
       termcf.readCache();
       termdf.readCache();
       for (String s : keywords) {
@@ -42,7 +42,7 @@ public class CreateTerm {
          t.cf = termcf.readValue(t.id);
          tuples.add(t);
       }
-      PigTerm d = (PigTerm) repository.getFeature(PigTerm.class);
+      PigTerm d = PigTerm.get(repository);
       d.openAppend();
       for (Tuple t : tuples) {
          d.write(t);

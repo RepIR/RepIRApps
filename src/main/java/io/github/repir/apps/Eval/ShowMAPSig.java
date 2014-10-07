@@ -22,7 +22,7 @@ public class ShowMAPSig {
       testset.getQrels();
       testset.purgeTopics();
       log.info("valid topics %d", testset.topics.size());
-      String systems[] = parsedargs.getRepeatedGroup("resultsext");
+      String systems[] = parsedargs.getStrings("resultsext");
       ResultSets resultsets = new ResultSets( new QueryMetricAP(), testset, systems);
       log.printf("baseline %f", resultsets.get(0).getMean());
       for (int i = 1; i < systems.length; i++) {

@@ -19,7 +19,7 @@ public class ShowR10 {
    public static void main(String args[]) {
       ArgsParser parsedargs = new ArgsParser(args, "configfile {resultsext}");
       TestSet testset = new TestSet(new Repository(parsedargs.get("configfile")));
-      ResultSets resultset = new ResultSets( new QueryMetricRecall( 10 ), testset, parsedargs.getRepeatedGroup("resultsext"));
+      ResultSets resultset = new ResultSets( new QueryMetricRecall( 10 ), testset, parsedargs.getStrings("resultsext"));
       log.printf("baseline %f", resultset.get(0).getMean());
       for (int i = 1; i < args.length; i++) {
          log.printf("%s %f gain %f%% sig %f", args[i], resultset.get(i).getMean(), 

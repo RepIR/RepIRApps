@@ -6,7 +6,7 @@ import io.github.repir.Retriever.MapReduce.Retriever;
 import io.github.repir.tools.Lib.Log;
 import io.github.repir.TestSet.ResultFileRR;
 import java.util.ArrayList;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.TestSet.TestSet;
 
 /**

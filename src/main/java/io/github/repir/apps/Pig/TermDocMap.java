@@ -7,7 +7,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.Term;
 import io.github.repir.Repository.TermInverted;
 import io.github.repir.Retriever.Document;
-import io.github.repir.tools.MapReduce.Configuration;
+import io.github.repir.MapReduceTools.Configuration;
 import io.github.repir.tools.Lib.Log;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,13 +42,12 @@ public class TermDocMap extends Mapper<IntWritable, Text, NullWritable, NullWrit
    @Override
    public void map(IntWritable inkey, Text invalue, Context context) throws IOException, InterruptedException {
       log.info("term %s", invalue.toString());
-      TermInverted terminverted = (TermInverted) repository.getFeature(TermInverted.class, "all", invalue.toString());
       Term term = repository.getProcessedTerm(invalue.toString());
+      TermInverted terminverted = TermInverted.get(repository, "all", term);
       if (term.exists()) {
          tuples = new ArrayList<Tuple>();
-         terminverted.setTerm(term);
          terminverted.setPartition(inkey.get());
-         terminverted.setBufferSize(1000000);
+         terminverted.getFile().setBufferSize(1000000);
          terminverted.openRead();
          Document doc = new Document();
          doc.partition = inkey.get();
@@ -67,7 +66,7 @@ public class TermDocMap extends Mapper<IntWritable, Text, NullWritable, NullWrit
    }
    
    public void flush(Term term) {
-         PigTermDoc termdoc = (PigTermDoc) repository.getFeature(PigTermDoc.class, term.getProcessedTerm());
+         PigTermDoc termdoc = PigTermDoc.get(repository, term.getProcessedTerm());
          termdoc.openAppend();
          for (Tuple t : tuples) {
             termdoc.write(t);

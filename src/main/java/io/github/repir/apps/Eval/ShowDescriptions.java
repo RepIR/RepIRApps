@@ -18,7 +18,8 @@ public class ShowDescriptions {
    public static Log log = new Log(ShowDescriptions.class);
 
    public static void main(String[] args) {
-      Repository repository = new Repository(new Configuration(args[0]));
+      Repository repository = new Repository(args, "");
+      Configuration conf = repository.getConfiguration();
       repository.getConfiguration().set("testset.topicreader", "TrecTopicDescription");
       TestSet testset = new TestSet(repository);
       TreeMap<Integer, TestSetTopic> sorted = new TreeMap<Integer, TestSetTopic>();

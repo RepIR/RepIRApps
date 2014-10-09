@@ -22,8 +22,8 @@ public class QueryFromArgsSinglePartition {
    public static Log log = new Log(QueryFromArgsSinglePartition.class);
 
    public static void main(String[] args) throws Exception {
-      Configuration conf = new Configuration(args, "partitionnr query");
-      Repository repository = new Repository(conf);
+      Repository repository = new Repository(args, "partitionnr query");
+      Configuration conf = repository.getConfiguration();
       Retriever retriever = new Retriever(repository);
       int partition = conf.getInt("partitionnr", 0);
       String querystring = StrTools.concat(' ', conf.getStrings("query"));

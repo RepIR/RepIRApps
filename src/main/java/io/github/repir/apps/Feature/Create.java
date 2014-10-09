@@ -40,8 +40,8 @@ public class Create {
    public static Log log = new Log(Create.class);
 
    public static void main(String[] args) throws Exception {
-      Configuration conf = new Configuration(args, "{feature}");
-      Repository repository = new Repository(conf);
+       Repository repository = new Repository(args, "{feature}");
+      Configuration conf = repository.getConfiguration();
       conf.setStrings("repository.constructfeatures", conf.getStrings("feature"));
       Job job = new Job(conf, "Repository Builder " + conf.get("repository.prefix"));
       int partitions = conf.getInt("repository.partitions", -1);

@@ -16,10 +16,10 @@ public class copyVocIndex {
   public static Log log = new Log( copyVocIndex.class ); 
 
    public static void main(String[] args) {
+      Repository repository = new Repository(args, "newindex");
+      Configuration conf = repository.getConfiguration();
       ByteSearch numbers = ByteSearch.create("\\.[0-9][0-9][0-9][0-9]");
-      Configuration conf = new Configuration(args, "newindex");
       String newname = conf.get("newindex");
-      Repository repository = new Repository(conf);
       FileSystem fs = repository.getFS();
       Repository newrepository = new Repository(conf);
       newrepository.changeName(newname);

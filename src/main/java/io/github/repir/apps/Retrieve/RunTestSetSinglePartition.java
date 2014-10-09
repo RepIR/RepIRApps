@@ -19,9 +19,9 @@ public class RunTestSetSinglePartition {
    public static Log log = new Log(RunTestSetSinglePartition.class);
 
    public static void main(String[] args) throws Exception {
-      Configuration conf = new Configuration(args, "partition resultsfileext");
+      Repository repository = new Repository(args, "partition resultsfileext");
+      Configuration conf = repository.getConfiguration();
       conf.setBoolean("inputformat.cansplit", false);
-      Repository repository = new Repository(conf);
       repository.setPartitions(conf.getInt("partition", 1));
       Retriever retriever = new Retriever(repository);
       TestSet testset = new TestSet( repository );

@@ -15,9 +15,9 @@ public class renamerepository {
   public static Log log = new Log( renamerepository.class ); 
 
    public static void main(String[] args) {
-      Configuration conf = new Configuration(args, "newindex");
+      Repository repository = new Repository(args, "newindex");
+      Configuration conf = repository.getConfiguration();
       String newname = conf.get("newindex");
-      Repository repository = new Repository(conf);
       FileSystem fs = repository.getFS();
       Repository newrepository = new Repository(conf);
       newrepository.changeName(newname);

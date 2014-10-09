@@ -20,8 +20,8 @@ public class QueryFromTestSetNoMR2 {
    public static Log log = new Log(QueryFromTestSetNoMR2.class);
 
    public static void main(String[] args) throws Exception {
-      Configuration conf = new Configuration(args, "topicid {query}");
-      Repository repository = new Repository(conf);
+      Repository repository = new Repository(args, "topicid {query}");
+      Configuration conf = repository.getConfiguration();
       Retriever retriever = new Retriever(repository);
       TestSet bm = new TestSet(repository);
       int topic = conf.getInt("topicid", 0);

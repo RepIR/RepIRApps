@@ -15,8 +15,8 @@ public class generateStopwords {
   public static Log log = new Log( generateStopwords.class ); 
 
    public static void main(String[] args) {
-      Configuration conf = new Configuration(args[0]);
-      Repository repository = new Repository( conf );
+      Repository repository = new Repository(args);
+      Configuration conf = repository.getConfiguration();
       StopwordsCache sw = StopwordsCache.get(repository);
       sw.openRead();
       HashSet<Integer> list = sw.getStopwords();

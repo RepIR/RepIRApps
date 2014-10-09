@@ -46,8 +46,8 @@ public class Create {
        * execution means that two processes will try to generate the same file,
        * which is bound to fail. Therefore, keep this turned off at all times.
        */
-      repository.getConfiguration().setBoolean("mapred.map.tasks.speculative.execution", false);
-      repository.getConfiguration().setBoolean("mapred.reduce.tasks.speculative.execution", false);
+      repository.getConfiguration().setBoolean("mapreduce.map.speculative", false);
+      repository.getConfiguration().setBoolean("mapreduce.reduce.speculative", false);
       
       log.info("mapreduce.job.queuename %s", repository.configuredString("mapreduce.job.queuename"));
       

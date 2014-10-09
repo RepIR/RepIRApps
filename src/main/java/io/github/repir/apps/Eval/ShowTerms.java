@@ -15,7 +15,7 @@ public class ShowTerms {
    public static Log log = new Log(ShowTerms.class);
 
    public static void main(String args[]) {
-      Repository repository = new Repository(args[0]);
+      Repository repository = new Repository(args);
       Retriever retriever = new Retriever(repository);
       TermString termstring = TermString.get(repository);
       termstring.getFile().setBufferSize(10000000);
@@ -23,7 +23,8 @@ public class ShowTerms {
       df.getFile().setBufferSize(10000000);
       TermCF cf = TermCF.get(repository);
       cf.getFile().setBufferSize(10000000);
-         for (int termid = 0; termid < repository.getVocabularySize(); termid++) {
+      log.info("%d", repository.getVocabularySize());
+         for (int termid = 0; termid < repository.getVocabularySize() && termid < 100; termid++) {
           String s = termstring.readValue(termid);
           log.printf("%s df %d cf %d", s, df.readValue(termid), cf.readValue(termid));            
          }

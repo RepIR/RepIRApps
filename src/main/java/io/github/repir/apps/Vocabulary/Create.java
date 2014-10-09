@@ -42,8 +42,7 @@ public class Create {
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args);
       repository.deleteMasterFile();
-      repository.getConfiguration().setInt("mapred.tasktracker.map.tasks.maximum", 1);
-      repository.getConfiguration().setInt("mapred.map.tasks", 1);
+      repository.getConfiguration().setInt("mapreduce.tasktracker.map.tasks.maximum", 1);
       Job job = new Job(repository.getConfiguration(), "Vocabulary Builder " + repository.configuredString("repository.prefix"));
       job.setNumReduceTasks(1);
       job.setMapOutputKeyClass(Text.class);

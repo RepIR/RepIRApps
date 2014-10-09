@@ -21,8 +21,8 @@ public class ShowQRels {
    public static Log log = new Log(ShowQRels.class);
 
    public static void main(String[] args) {
-      Configuration conf = new Configuration(args, "[topic]");
-      Repository repository = new Repository(conf);
+      Repository repository = new Repository(args, "[topic]");
+      Configuration conf = repository.getConfiguration();
       TestSet testset = new TestSet(repository);
       TreeMap<Integer, QRel> sorted = new TreeMap();
       sorted.putAll(testset.getQrels());

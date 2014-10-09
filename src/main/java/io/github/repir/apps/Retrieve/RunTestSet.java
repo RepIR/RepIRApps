@@ -19,8 +19,8 @@ public class RunTestSet {
    public static Log log = new Log(RunTestSet.class);
 
    public static void main(String[] args) throws Exception {
-      Configuration conf = new Configuration(args, "resultsfileext");
-      Repository repository = new Repository(conf);
+      Repository repository = new Repository(args, "resultsfileext");
+      Configuration conf = repository.getConfiguration();
        Retriever retriever = new Retriever(repository);
        TestSet testset = new TestSet( repository );
        retriever.addQueue(testset.getQueries(retriever));

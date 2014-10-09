@@ -23,10 +23,9 @@ public class NDCGToExcel {
    public static Log log = new Log(NDCGToExcel.class);
 
    public static void main(String args[]) {
-      ArgsParser parsedargs = new ArgsParser(args, "configfile {resultsext}");
-      Repository repository = new Repository(parsedargs.get("configfile"));
+      Repository repository = new Repository(args, "{resultsext}");
       TestSet testset = new TestSet( repository );
-      ResultSets resultsets = new ResultSets( new QueryMetricNDCG(1000), testset, parsedargs.getStrings("resultsext"));
+      ResultSets resultsets = new ResultSets( new QueryMetricNDCG(1000), testset, repository.configuredStrings("resultsext"));
       ExcelDoc workbook = new ExcelDoc(repository.configuredString("testset.name") + ".xlsx");
       ExcelSheet querysheet = workbook.getSheet("queries");
       querysheet.setRow(0, 0, "nr", "original query", "system");

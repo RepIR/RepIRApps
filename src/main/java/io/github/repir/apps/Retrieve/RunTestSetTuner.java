@@ -20,10 +20,10 @@ public class RunTestSetTuner {
    public static Log log = new Log(RunTestSetTuner.class);
 
    public static void main(String[] args) throws Exception {
-      Configuration conf = new Configuration(args, "");
+      Repository repository = new Repository(args, "");
+      Configuration conf = repository.getConfiguration();
       conf.setBoolean("inputformat.cansplit", false);
       //HDTools.setPriorityHigh(conf);
-      Repository repository = new Repository(conf);
       Retriever retriever = new Retriever(repository);
       TestSet testset = new TestSet(repository);
       ArrayList<Variant> variants = retriever.getVariants();

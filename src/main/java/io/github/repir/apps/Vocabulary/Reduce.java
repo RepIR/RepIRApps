@@ -28,7 +28,9 @@ public class Reduce extends Reducer<Text, LongWritable, NullWritable, NullWritab
       tffile = VocTFFile.getVocTFFile(repository); // temporary file, that is self-sorting, and used to construct the DIctionary features afterwards.
       tffile.setBufferSize(10000000);
       tffile.openWrite();
+      log.info("%s", repository.storedfeaturesmap);
       features = getDictionaryFeatures( repository );
+      log.info("%s", repository.storedfeaturesmap);
    }
 
    @Override
@@ -90,10 +92,12 @@ public class Reduce extends Reducer<Text, LongWritable, NullWritable, NullWritab
    }
 
    protected static ArrayList<DictionaryFeature> getDictionaryFeatures(Repository repository) {
-      ArrayList<DictionaryFeature> features = new ArrayList<DictionaryFeature>();
+      log.info("3 %s", repository.storedfeaturesmap);
+       ArrayList<DictionaryFeature> features = new ArrayList<DictionaryFeature>();
       for (StoredFeature f : repository.getConfiguredFeatures())
          if (f instanceof DictionaryFeature)
             features.add((DictionaryFeature) f );
+      log.info("4 %s", repository.storedfeaturesmap);
       return features;
    }
 }

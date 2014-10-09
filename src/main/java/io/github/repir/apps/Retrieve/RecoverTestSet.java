@@ -19,8 +19,8 @@ public class RecoverTestSet {
    public static Log log = new Log(RecoverTestSet.class);
 
    public static void main(String[] args) throws Exception {
-      Configuration conf = new Configuration(args, "resultsfileext path");
-      Repository repository = new Repository(conf);
+      Repository repository = new Repository(args, "resultsfileext path");
+      Configuration conf = repository.getConfiguration();
       String path = conf.get("retriever.tempdir", "") + repository.configuredString("path");
       Retriever retriever = new Retriever(repository);
       TestSet testset = new TestSet( repository );

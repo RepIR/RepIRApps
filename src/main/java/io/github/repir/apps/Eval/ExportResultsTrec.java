@@ -26,12 +26,11 @@ public class ExportResultsTrec {
    public static Log log = new Log(ExportResultsTrec.class);
 
    public static void main(String args[]) {
-      ArgsParser parsedargs = new ArgsParser(args, "configfile resultsext identifier");
-      Repository repository = new Repository(parsedargs.get("configfile"));
-      String identifier = parsedargs.get("identifier");
+      Repository repository = new Repository(args, "resultsext identifier");
+      String identifier = repository.configuredString("identifier");
       TestSet testset = new TestSet(repository);
       DocLiteral collectionid = repository.getCollectionIDFeature();
-      ResultFileRR results = testset.getResults(parsedargs.get("resultsext"));
+      ResultFileRR results = testset.getResults(repository.configuredString("resultsext"));
       TRECFile trecfile = new TRECFile(new Datafile(identifier));
       trecfile.openWrite();
       Sortedqueries sortedqueries = new Sortedqueries(results.getResults());

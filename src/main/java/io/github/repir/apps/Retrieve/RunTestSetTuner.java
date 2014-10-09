@@ -4,7 +4,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Query;
 import io.github.repir.tools.Lib.Log;
 import java.util.ArrayList;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.Retriever.Query.Variant;
 import io.github.repir.Retriever.Tuner.Retriever;
 import io.github.repir.TestSet.TestSet;
@@ -21,7 +21,7 @@ public class RunTestSetTuner {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args, "");
-      Configuration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConfiguration();
       conf.setBoolean("inputformat.cansplit", false);
       //HDTools.setPriorityHigh(conf);
       Retriever retriever = new Retriever(repository);

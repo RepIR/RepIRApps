@@ -7,7 +7,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.Term;
 import io.github.repir.Repository.TermInverted;
 import io.github.repir.Retriever.Document;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.tools.Lib.Log;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 public class TermDocMapPos extends Mapper<IntWritable, Text, NullWritable, NullWritable> {
 
    public static Log log = new Log(TermDocMapPos.class);
-   Configuration conf;
+   RRConfiguration conf;
    Repository repository;
    int width = 10;
    ArrayList<Tuple> tuples;

@@ -4,7 +4,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.TestSet.Qrel.QRel;
 import io.github.repir.TestSet.TestSet;
 import io.github.repir.tools.Lib.Log;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -22,7 +22,7 @@ public class ShowQRels {
 
    public static void main(String[] args) {
       Repository repository = new Repository(args, "[topic]");
-      Configuration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConfiguration();
       TestSet testset = new TestSet(repository);
       TreeMap<Integer, QRel> sorted = new TreeMap();
       sorted.putAll(testset.getQrels());

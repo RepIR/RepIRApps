@@ -6,7 +6,7 @@ import io.github.repir.Retriever.MapReduce.Retriever;
 import io.github.repir.tools.Lib.Log;
 import io.github.repir.TestSet.ResultFileRR;
 import java.util.ArrayList;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.TestSet.TestSet;
 
 /**
@@ -20,7 +20,7 @@ public class RunTestSet {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args, "resultsfileext");
-      Configuration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConfiguration();
        Retriever retriever = new Retriever(repository);
        TestSet testset = new TestSet( repository );
        retriever.addQueue(testset.getQueries(retriever));

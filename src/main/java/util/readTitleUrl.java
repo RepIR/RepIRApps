@@ -1,7 +1,7 @@
 package util;
 
-import io.github.repir.Extractor.DefaultTokenizer;
-import io.github.repir.Extractor.HtmlTitleExtractor;
+import io.github.repir.tools.Extractor.DefaultTokenizer;
+import io.github.repir.tools.Extractor.HtmlTitleExtractor;
 import io.github.repir.tools.Lib.Log;
 import io.github.repir.tools.Lib.WebTools;
 import java.util.ArrayList;

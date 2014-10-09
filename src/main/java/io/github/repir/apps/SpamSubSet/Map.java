@@ -2,7 +2,7 @@ package io.github.repir.apps.SpamSubSet;
 
 import io.github.repir.EntityReader.SpamFile;
 import io.github.repir.tools.Content.Datafile;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.tools.Lib.Log;
 import java.io.IOException;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ public class Map extends Mapper<LongWritable, Text, NullWritable, NullWritable> 
          if (sf == null) {
             String filename = "/user/jeroenv/input/clueweb/" + directory + ".spam";
             //log.info("spamfile %s %s", directory, filename);
-            sf = new SpamFile(new Datafile(Configuration.getFS(), filename));
+            sf = new SpamFile(new Datafile(RRConfiguration.getFS(), filename));
             sf.setBufferSize(100000);
             sf.openWrite();
             spamfiles.put(directory, sf);

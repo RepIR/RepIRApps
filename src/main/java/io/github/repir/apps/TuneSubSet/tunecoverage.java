@@ -8,7 +8,7 @@ import io.github.repir.TestSet.TestSet;
 import io.github.repir.tools.ByteSearch.ByteRegex;
 import io.github.repir.tools.Content.Datafile;
 import io.github.repir.tools.Content.EOCException;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.tools.Lib.Log;
 import java.util.Collection;
 import java.util.HashSet;
@@ -28,7 +28,7 @@ public class tunecoverage {
       String sys[] = args[2].split(",");
       ByteRegex cluewebidpattern = new ByteRegex("clueweb\\S*?(?=\\s)");
       HashSet<String> ids = new HashSet<String>();
-      FileSystem fs = Configuration.getFS();
+      FileSystem fs = RRConfiguration.getFS();
       Datafile subset = new Datafile(fs, args[0]);
       subset.openRead();
       subset.setBufferSize(100000000);

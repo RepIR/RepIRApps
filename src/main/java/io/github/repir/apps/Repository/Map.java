@@ -3,7 +3,7 @@ package io.github.repir.apps.Repository;
 import io.github.repir.EntityReader.MapReduce.EntityWritable;
 import io.github.repir.EntityReader.MapReduce.TermEntityKey;
 import io.github.repir.EntityReader.MapReduce.TermEntityValue;
-import io.github.repir.Extractor.Extractor;
+import io.github.repir.tools.Extractor.Extractor;
 import io.github.repir.Repository.AutoTermDocumentFeature;
 import io.github.repir.Repository.DocLiteral;
 import io.github.repir.Repository.ReducibleFeature;

@@ -5,7 +5,7 @@ import org.apache.hadoop.fs.Path;
 import io.github.repir.Repository.Repository;
 import io.github.repir.tools.Content.Datafile;
 import io.github.repir.tools.Content.HDFSDir;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.tools.Lib.Log;
 
 /**
@@ -18,7 +18,7 @@ public class copyIndex {
 
    public static void main(String[] args) {
       Repository repository = new Repository(args, "newindex");
-      Configuration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConfiguration();
       String newname = conf.get("newindex");
       FileSystem fs = repository.getFS();
       Repository newrepository = new Repository(conf);
@@ -40,7 +40,7 @@ public class copyIndex {
          }
       }
       newrepository.writeConfiguration();
-      Datafile fsfilein = Configuration.configfile(args[0]);
+      Datafile fsfilein = RRConfiguration.configfile(args[0]);
       String content = fsfilein.readAsString();
       content = content.replaceAll(repository.getPrefix(), newrepository.getPrefix());
       Datafile fsfileout = new Datafile(fsfilein.getFullPath().replaceAll(repository.getPrefix(), newrepository.getPrefix()));

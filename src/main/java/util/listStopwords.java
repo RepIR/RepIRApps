@@ -3,7 +3,7 @@ import java.util.HashSet;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.Stopwords.StopwordsCache;
 import io.github.repir.Repository.TermString;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.tools.Lib.Log; 
 
 /**
@@ -15,7 +15,7 @@ public class listStopwords {
 
    public static void main(String[] args) {
       Repository repository = new Repository(args);
-      Configuration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConfiguration();
       StopwordsCache sw = StopwordsCache.get(repository);
       HashSet<Integer> list = sw.getStopwords();
       TermString termstring = TermString.get(repository);

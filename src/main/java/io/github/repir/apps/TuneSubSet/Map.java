@@ -4,7 +4,7 @@ import io.github.repir.tools.Content.Datafile;
 import io.github.repir.tools.Lib.Log;
 import java.io.IOException;
 import java.util.HashMap;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
@@ -14,12 +14,12 @@ import io.github.repir.EntityReader.SubSetFile;
 public class Map extends Mapper<LongWritable, Text, NullWritable, NullWritable> {
 
    public static Log log = new Log(Map.class);
-   Configuration configuration;
+   RRConfiguration configuration;
    private HashMap<String, SubSetFile> spamfiles = new HashMap<String, SubSetFile>();
 
    @Override
    public void setup(Context context) {
-      configuration = Configuration.convert(context.getConfiguration());
+      configuration = RRConfiguration.convert(context.getConfiguration());
    }
    
    @Override

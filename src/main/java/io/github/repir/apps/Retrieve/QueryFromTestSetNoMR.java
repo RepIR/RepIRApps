@@ -8,7 +8,7 @@ import io.github.repir.Retriever.Retriever;
 import io.github.repir.Retriever.Query;
 import io.github.repir.tools.Lib.Log;
 import io.github.repir.TestSet.Metric.QueryMetricAP;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.TestSet.Metric.QueryMetricPrecision;
 import io.github.repir.TestSet.Metric.QueryMetricRecall;
 import io.github.repir.TestSet.ResultSet;
@@ -25,7 +25,7 @@ public class QueryFromTestSetNoMR {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args, "topicid {query}");
-      Configuration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConfiguration();
       Retriever retriever = new Retriever(repository);
       TestSet testset = new TestSet(repository);
       int topic = conf.getInt("topicid", 0);

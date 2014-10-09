@@ -6,7 +6,7 @@ import io.github.repir.Retriever.MapReduce.Retriever;
 import io.github.repir.tools.Lib.Log;
 import io.github.repir.TestSet.ResultFileRR;
 import java.util.ArrayList;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.TestSet.TestSet;
 
 /**
@@ -20,7 +20,7 @@ public class RunTestSetSinglePartition {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args, "partition resultsfileext");
-      Configuration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConfiguration();
       conf.setBoolean("inputformat.cansplit", false);
       repository.setPartitions(conf.getInt("partition", 1));
       Retriever retriever = new Retriever(repository);

@@ -5,7 +5,7 @@ import io.github.repir.apps.Vocabulary.RecoverMap;
 import io.github.repir.apps.Vocabulary.Reduce;
 import io.github.repir.tools.Content.Datafile;
 import io.github.repir.tools.Lib.Log;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.MapReduceTools.NullInputFormat;
 import io.github.repir.tools.Structure.StructuredDataStream;
 import io.github.repir.tools.Structure.StructuredFileSort;

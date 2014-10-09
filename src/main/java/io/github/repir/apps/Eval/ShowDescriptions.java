@@ -6,7 +6,7 @@ import io.github.repir.tools.Lib.Log;
 import java.util.Map;
 import java.util.TreeMap;
 import io.github.repir.TestSet.Topic.TestSetTopic;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 
 /**
  * Shows the topics from the test set in the config file
@@ -19,7 +19,7 @@ public class ShowDescriptions {
 
    public static void main(String[] args) {
       Repository repository = new Repository(args, "");
-      Configuration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConfiguration();
       repository.getConfiguration().set("testset.topicreader", "TrecTopicDescription");
       TestSet testset = new TestSet(repository);
       TreeMap<Integer, TestSetTopic> sorted = new TreeMap<Integer, TestSetTopic>();

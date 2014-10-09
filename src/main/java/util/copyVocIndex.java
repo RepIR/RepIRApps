@@ -5,7 +5,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.tools.ByteSearch.ByteSearch;
 import io.github.repir.tools.Content.Datafile;
 import io.github.repir.tools.Content.HDFSDir;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.tools.Lib.Log; 
 
 /**
@@ -17,7 +17,7 @@ public class copyVocIndex {
 
    public static void main(String[] args) {
       Repository repository = new Repository(args, "newindex");
-      Configuration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConfiguration();
       ByteSearch numbers = ByteSearch.create("\\.[0-9][0-9][0-9][0-9]");
       String newname = conf.get("newindex");
       FileSystem fs = repository.getFS();
@@ -46,7 +46,7 @@ public class copyVocIndex {
       }
 
       newrepository.writeConfiguration();
-      Datafile fsfilein = Configuration.configfile(args[0]);
+      Datafile fsfilein = RRConfiguration.configfile(args[0]);
       String content = fsfilein.readAsString();
       content = content.replaceAll(repository.getPrefix(), newrepository.getPrefix());
       Datafile fsfileout = new Datafile( fsfilein.getFullPath().replaceAll( repository.getPrefix(), newrepository.getPrefix()));

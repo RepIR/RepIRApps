@@ -5,7 +5,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.tools.ByteSearch.ByteSearch;
 import io.github.repir.tools.Content.Datafile;
 import io.github.repir.tools.Content.HDFSDir;
-import io.github.repir.MapReduceTools.Configuration;
+import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.tools.Lib.Log;
 
 /**
@@ -18,7 +18,7 @@ public class mvIndex {
 
    public static void main(String[] args) {
       Repository repository = new Repository(args, "newindex");
-      Configuration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConfiguration();
       String newname = conf.get("newindex");
       FileSystem fs = repository.getFS();
       Repository newrepository = new Repository(conf);
@@ -31,7 +31,7 @@ public class mvIndex {
       sourcedir.move(destdir);
       mv(destdir, repository.getPrefix(), newrepository.getPrefix());
       newrepository.writeConfiguration();
-      Datafile fsfilein = Configuration.configfile(args[0]);
+      Datafile fsfilein = RRConfiguration.configfile(args[0]);
       String content = fsfilein.readAsString();
       ByteSearch needle = ByteSearch.create("(?<=\\W)" + repository.getPrefix() + "($|(?=\\W))");
       String content1 = needle.replaceAll(content, newrepository.getPrefix());

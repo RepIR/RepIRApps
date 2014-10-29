@@ -40,7 +40,7 @@ public class CreateLoad {
             scriptfile.printf("%s", termdoc.loadScript());
             scriptfile.closeWrite();
          } else {
-            log.info("doesnt exist %s", termdoc.getFile().datafile.getFullPath());
+            log.info("doesnt exist %s", termdoc.getFile().getDatafile().getFullPath());
          }
       }
    }

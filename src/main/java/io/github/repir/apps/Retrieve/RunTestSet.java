@@ -26,7 +26,7 @@ public class RunTestSet {
        retriever.addQueue(testset.getQueries(retriever));
        repository.getConfiguration().setBoolean("inputformat.cansplit", true);
       ResultFileRR out = new ResultFileRR(repository, io.github.repir.TestSet.TestSet.getResultsFile(repository, repository.configuredString("resultsfileext")));
-      log.info("outfile %s", out.datafile.getFullPath());
+      log.info("outfile %s", out.getDatafile().getFullPath());
       ArrayList<Query> results = retriever.retrieveQueue();
       out.writeresults(results);
    }

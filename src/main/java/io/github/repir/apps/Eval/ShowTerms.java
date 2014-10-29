@@ -24,7 +24,7 @@ public class ShowTerms {
       TermCF cf = TermCF.get(repository);
       cf.getFile().setBufferSize(10000000);
       log.info("%d", repository.getVocabularySize());
-         for (int termid = 0; termid < repository.getVocabularySize() && termid < 100; termid++) {
+         for (int termid = 0; termid < repository.getVocabularySize() && termid < 500; termid++) {
           String s = termstring.readValue(termid);
           log.printf("%s df %d cf %d", s, df.readValue(termid), cf.readValue(termid));            
          }

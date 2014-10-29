@@ -27,7 +27,7 @@ public class RunTestSetSinglePartition {
       TestSet testset = new TestSet( repository );
       retriever.addQueue(testset.getQueries(retriever));
       ResultFileRR out = new ResultFileRR(repository, io.github.repir.TestSet.TestSet.getResultsFile(repository, repository.configuredString("resultsfileext")));
-      log.info("outfile %s", out.datafile.getFullPath());
+      log.info("outfile %s", out.getDatafile().getFullPath());
       ArrayList<Query> results = retriever.retrieveQueue();
       out.writeresults(results);
    }

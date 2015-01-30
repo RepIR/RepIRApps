@@ -2,7 +2,7 @@ package io.github.repir.apps.Eval;
 
 import io.github.repir.Repository.Repository;
 import io.github.repir.TestSet.TestSet;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import java.util.Map;
 import java.util.TreeMap;
 import io.github.repir.TestSet.Topic.TestSetTopic;
@@ -19,8 +19,8 @@ public class ShowDescriptions {
 
    public static void main(String[] args) {
       Repository repository = new Repository(args, "");
-      RRConfiguration conf = repository.getConfiguration();
-      repository.getConfiguration().set("testset.topicreader", "TrecTopicDescription");
+      RRConfiguration conf = repository.getConf();
+      repository.getConf().set("testset.topicreader", "TrecTopicDescription");
       TestSet testset = new TestSet(repository);
       TreeMap<Integer, TestSetTopic> sorted = new TreeMap<Integer, TestSetTopic>();
       sorted.putAll(testset.topics);

@@ -1,7 +1,7 @@
 package io.github.repir.apps.Pig;
 
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 
 /**
  * Retrieve all topics from the TestSet, and store in an output file. arguments:

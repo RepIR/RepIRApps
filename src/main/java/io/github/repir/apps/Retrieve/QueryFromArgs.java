@@ -5,9 +5,9 @@ import io.github.repir.Retriever.MapReduce.Retriever;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Document;
 import io.github.repir.Retriever.Query;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import java.util.ArrayList;
-import io.github.repir.tools.Lib.StrTools;
+import io.github.repir.tools.lib.StrTools;
 
 /**
  * Use the MR retriever to retrieve a single query from the repository and
@@ -21,7 +21,6 @@ public class QueryFromArgs {
    
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args, "{query}");
-      repository.getConfiguration().setPriorityHigh();
       Retriever retriever = new Retriever(repository);
       DocLiteral literaltitle = DocLiteral.get(repository, "literaltitle");
       Query q = retriever.constructQueryRequest(StrTools.concat(' ', repository.configuredStrings("query")));

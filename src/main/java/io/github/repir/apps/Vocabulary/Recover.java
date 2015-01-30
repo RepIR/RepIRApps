@@ -5,9 +5,9 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.StoredFeature;
 import static io.github.repir.apps.Vocabulary.Reduce.getDictionaryFeatures;
 import static io.github.repir.apps.Vocabulary.Reduce.writeVoc;
-import io.github.repir.tools.Lib.Log;
-import io.github.repir.tools.Structure.StructuredFileSort;
-import io.github.repir.tools.Structure.StructuredFileSortReader;
+import io.github.repir.tools.lib.Log;
+import io.github.repir.tools.io.struct.StructuredFileSort;
+import io.github.repir.tools.io.struct.StructuredFileSortReader;
 import java.util.ArrayList;
 
 public class Recover {

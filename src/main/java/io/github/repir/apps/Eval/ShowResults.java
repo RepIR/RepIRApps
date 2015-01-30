@@ -3,12 +3,12 @@ package io.github.repir.apps.Eval;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Document;
 import io.github.repir.Retriever.Query;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.TestSet.ResultFileRR;
 import io.github.repir.TestSet.TestSet;
 import java.util.Collection;
 import io.github.repir.Repository.DocLiteral;
-import io.github.repir.tools.Lib.ArgsParser;
+import io.github.repir.tools.lib.ArgsParser;
 
 /**
  * outputs a set of results files with the same test set to excel. The output is

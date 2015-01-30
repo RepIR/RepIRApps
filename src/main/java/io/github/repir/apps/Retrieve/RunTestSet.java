@@ -3,7 +3,7 @@ package io.github.repir.apps.Retrieve;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Query;
 import io.github.repir.Retriever.MapReduce.Retriever;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.TestSet.ResultFileRR;
 import java.util.ArrayList;
 import io.github.repir.MapReduceTools.RRConfiguration;
@@ -20,13 +20,13 @@ public class RunTestSet {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args, "resultsfileext");
-      RRConfiguration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConf();
        Retriever retriever = new Retriever(repository);
        TestSet testset = new TestSet( repository );
        retriever.addQueue(testset.getQueries(retriever));
-       repository.getConfiguration().setBoolean("inputformat.cansplit", true);
+       repository.getConf().setBoolean("inputformat.cansplit", true);
       ResultFileRR out = new ResultFileRR(repository, io.github.repir.TestSet.TestSet.getResultsFile(repository, repository.configuredString("resultsfileext")));
-      log.info("outfile %s", out.getDatafile().getFullPath());
+      log.info("outfile %s", out.getDatafile().getCanonicalPath());
       ArrayList<Query> results = retriever.retrieveQueue();
       out.writeresults(results);
    }

@@ -15,9 +15,9 @@
  */
 package util;
 
-import io.github.repir.tools.Lib.ArrayTools;
-import io.github.repir.tools.Lib.BoolTools;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.ArrayTools;
+import io.github.repir.tools.lib.BoolTools;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.tools.Words.englishStemmer;
 import java.io.IOException;
 import org.apache.hadoop.conf.Configuration;

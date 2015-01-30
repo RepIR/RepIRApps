@@ -3,8 +3,8 @@ package util;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.SynStats;
 import io.github.repir.Repository.SynStats.Record;
-import io.github.repir.tools.Lib.ArgsParser;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.ArgsParser;
+import io.github.repir.tools.lib.Log;
 
 public class listsyn {
 

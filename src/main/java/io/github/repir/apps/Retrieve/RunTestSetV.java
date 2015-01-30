@@ -3,7 +3,7 @@ package io.github.repir.apps.Retrieve;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Query;
 import io.github.repir.Retriever.Reusable.Retriever;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import java.util.ArrayList;
 import io.github.repir.Retriever.Query.Variant;
 import io.github.repir.Retriever.MapReduce.QueueIterator;
@@ -20,8 +20,7 @@ public class RunTestSetV {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args);
-      repository.getConfiguration().setBoolean("inputformat.cansplit", true);
-      repository.getConfiguration().setPriorityHigh();
+      repository.getConf().setBoolean("inputformat.cansplit", true);
       Retriever retriever = new Retriever(repository);
       TestSet testset = new TestSet( repository );
       ArrayList<Variant> variants = new ArrayList<Variant>();

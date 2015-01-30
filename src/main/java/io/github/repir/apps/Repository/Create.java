@@ -5,8 +5,8 @@ import io.github.repir.EntityReader.MapReduce.TermEntityKey;
 import io.github.repir.EntityReader.MapReduce.TermEntityValue;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.StoredFeature;
-import static io.github.repir.tools.Lib.ClassTools.*;
-import io.github.repir.tools.Lib.Log;
+import static io.github.repir.tools.lib.ClassTools.*;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.tools.hadoop.Job;
 import java.lang.reflect.Constructor;
 import org.apache.hadoop.io.NullWritable;
@@ -46,13 +46,13 @@ public class Create {
        * execution means that two processes will try to generate the same file,
        * which is bound to fail. Therefore, keep this turned off at all times.
        */
-      repository.getConfiguration().setBoolean("mapreduce.map.speculative", false);
-      repository.getConfiguration().setBoolean("mapreduce.reduce.speculative", false);
+      repository.getConf().setMapSpeculativeExecution(false);
+      repository.getConf().setBoolean("mapreduce.reduce.speculative", false);
+      repository.getConf().setReduceSpeculativeExecution(false);
       
       log.info("mapreduce.job.queuename %s", repository.configuredString("mapreduce.job.queuename"));
       
-      Job job = new Job(repository.getConfiguration(), 
-              "Repository Builder " + repository.configuredString("repository.prefix"));
+      Job job = new Job(repository.getConf(), repository.configuredString("repository.prefix"));
       int partitions = repository.configuredInt("repository.onlypartition", -1);
       if (partitions == -1)
          partitions = repository.configuredInt("repository.partitions", -1);

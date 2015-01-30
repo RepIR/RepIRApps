@@ -5,11 +5,11 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Document;
 import io.github.repir.Retriever.Retriever;
 import io.github.repir.Retriever.Query;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.Strategy.Collector.CollectorDocument;
 import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.Strategy.Strategy;
-import io.github.repir.tools.Lib.StrTools;
+import io.github.repir.tools.lib.StrTools;
 
 /**
  * Retrieve the results for one query from only one partition of the repository,
@@ -23,7 +23,7 @@ public class QueryFromArgsSinglePartition {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args, "partitionnr query");
-      RRConfiguration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConf();
       Retriever retriever = new Retriever(repository);
       int partition = conf.getInt("partitionnr", 0);
       String querystring = StrTools.concat(' ', conf.getStrings("query"));

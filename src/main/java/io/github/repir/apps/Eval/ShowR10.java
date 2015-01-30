@@ -4,8 +4,9 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.TestSet.Metric.QueryMetricRecall;
 import io.github.repir.TestSet.ResultSets;
 import io.github.repir.TestSet.TestSet;
-import io.github.repir.tools.Lib.ArgsParser;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.ArgsParser;
+import io.github.repir.tools.lib.Log;
+import java.io.IOException;
 
 /**
  * Show Recall@10 for set of results files to same test set
@@ -16,7 +17,7 @@ public class ShowR10 {
 
    public static Log log = new Log(ShowR10.class);
 
-   public static void main(String args[]) {
+   public static void main(String args[]) throws IOException {
       ArgsParser parsedargs = new ArgsParser(args, "configfile {resultsext}");
       TestSet testset = new TestSet(new Repository(parsedargs.get("configfile")));
       ResultSets resultset = new ResultSets( new QueryMetricRecall( 10 ), testset, parsedargs.getStrings("resultsext"));

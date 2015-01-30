@@ -3,13 +3,15 @@ package io.github.repir.apps.Eval;
 import com.google.common.base.Strings;
 import io.github.repir.TestSet.ResultSets;
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.TestSet.Metric.QueryMetricAP;
 import io.github.repir.TestSet.TestSet;
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Lib.ArgsParser;
-import io.github.repir.tools.Lib.ArrayTools;
-import io.github.repir.tools.Lib.MathTools;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.lib.ArgsParser;
+import io.github.repir.tools.lib.ArrayTools;
+import io.github.repir.tools.lib.DoubleTools;
+import io.github.repir.tools.lib.MathTools;
+import java.io.IOException;
 
 /**
  * reports MAP and TTest p-values for a range of test sets and systems into an
@@ -23,7 +25,7 @@ public class RIToLatex {
     public ResultSets sets[];
     public double[] max;
 
-    public RIToLatex(String filename, String collections[], String systems[]) {
+    public RIToLatex(String filename, String collections[], String systems[]) throws IOException {
         sets = new ResultSets[collections.length];
         max = new double[collections.length];
         double ri[][] = new double[collections.length][systems.length];
@@ -65,8 +67,8 @@ public class RIToLatex {
         int lastrow = collections.length;
         df.printf("Average");
         for (int sys = 1; sys < systems.length; sys++) {
-            double avg = MathTools.avg(ArrayTools.slice(ri, sys));
-            df.printf(" & %.2f", avg);
+            double mean = DoubleTools.mean(ArrayTools.slice(ri, sys));
+            df.printf(" & %.2f", mean);
         }
         df.printf("\\\\\n\\hline\n");
         df.printf("\\end{tabular}\n");
@@ -74,7 +76,7 @@ public class RIToLatex {
         df.close();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ArgsParser ar = new ArgsParser(args, "collections systems");
         String collections[] = ar.get("collections").split(",");
         String systems[] = ar.get("systems").split(",");

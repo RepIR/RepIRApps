@@ -6,9 +6,10 @@ import io.github.repir.TestSet.Metric.QueryMetricAP;
 import io.github.repir.TestSet.Metric.QueryMetricStatAP;
 import io.github.repir.TestSet.ResultSets;
 import io.github.repir.TestSet.TestSet;
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Lib.ArgsParser;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.lib.ArgsParser;
+import io.github.repir.tools.lib.Log;
+import java.io.IOException;
 
 /**
  * reports MAP and TTest p-values for a range of test sets and systems into an
@@ -23,7 +24,7 @@ public class SigToLatex {
     public ResultSets sets[];
     public double[] totals, max;
 
-    public SigToLatex(String filename, String collections[], String systems[]) {
+    public SigToLatex(String filename, String collections[], String systems[]) throws IOException {
         totals = new double[systems.length];
         sets = new ResultSets[collections.length];
         max = new double[collections.length];
@@ -108,7 +109,7 @@ public class SigToLatex {
         df.close();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ArgsParser ar = new ArgsParser(args, "collections systems");
         String collections[] = ar.get("collections").split(",");
         String systems[] = ar.get("systems").split(",");

@@ -2,11 +2,12 @@ package util;
 
 import org.apache.hadoop.fs.FileSystem;
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.ByteSearch.ByteSearch;
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Content.HDFSDir;
+import io.github.repir.tools.search.ByteSearch;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.io.HDFSPath;
 import io.github.repir.MapReduceTools.RRConfiguration;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
+import java.io.IOException;
 
 /**
  *
@@ -16,9 +17,9 @@ public class mvIndex {
 
    public static Log log = new Log(mvIndex.class);
 
-   public static void main(String[] args) {
+   public static void main(String[] args) throws IOException {
       Repository repository = new Repository(args, "newindex");
-      RRConfiguration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConf();
       String newname = conf.get("newindex");
       FileSystem fs = repository.getFS();
       Repository newrepository = new Repository(conf);
@@ -26,8 +27,8 @@ public class mvIndex {
       if (newrepository.exists()) {
          log.fatal("Directory %s exists, please remove", newrepository.getBaseDir().toString());
       }
-      HDFSDir sourcedir = repository.getBaseDir();
-      HDFSDir destdir = newrepository.getBaseDir();
+      HDFSPath sourcedir = repository.getBaseDir();
+      HDFSPath destdir = newrepository.getBaseDir();
       sourcedir.move(destdir);
       mv(destdir, repository.getPrefix(), newrepository.getPrefix());
       newrepository.writeConfiguration();
@@ -36,14 +37,14 @@ public class mvIndex {
       ByteSearch needle = ByteSearch.create("(?<=\\W)" + repository.getPrefix() + "($|(?=\\W))");
       String content1 = needle.replaceAll(content, newrepository.getPrefix());
       fsfilein.close();
-      Datafile fsfileout = new Datafile(fsfilein.getFullPath().replaceAll(repository.getPrefix(), newrepository.getPrefix()));
+      Datafile fsfileout = new Datafile(fsfilein.getCanonicalPath().replaceAll(repository.getPrefix(), newrepository.getPrefix()));
       fsfileout.printf("%s", content1);
       fsfileout.close();
    }
    
-   public static void mv(HDFSDir dir, String sourceprefix, String destprefix) {
+   public static void mv(HDFSPath dir, String sourceprefix, String destprefix) throws IOException {
       dir.move(dir, sourceprefix + "*", destprefix + "*");
-      for (HDFSDir d : dir.getSubDirs()) {
+      for (HDFSPath d : dir.getDirs()) {
          mv(d, sourceprefix, destprefix);
       }
    }

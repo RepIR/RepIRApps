@@ -3,7 +3,7 @@ package io.github.repir.apps.Vocabulary;
 import io.github.repir.Repository.DictionaryFeature;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.StoredFeature;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.apache.hadoop.io.LongWritable;

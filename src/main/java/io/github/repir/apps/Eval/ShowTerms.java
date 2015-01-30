@@ -5,7 +5,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.TermDF;
 import io.github.repir.Repository.TermString;
 import io.github.repir.Repository.TermCF;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 
 /**
  * Shows the top-10000 terms in the vocabulary

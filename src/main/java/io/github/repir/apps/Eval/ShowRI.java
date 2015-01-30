@@ -2,10 +2,11 @@ package io.github.repir.apps.Eval;
 
 import io.github.repir.TestSet.TestSet;
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.TestSet.Metric.QueryMetricAP;
 import io.github.repir.TestSet.ResultSets;
-import io.github.repir.tools.Lib.ArgsParser;
+import io.github.repir.tools.lib.ArgsParser;
+import java.io.IOException;
 
 /**
  * calculates MAP and significance for given results
@@ -16,7 +17,7 @@ public class ShowRI {
 
    public static Log log = new Log(ShowRI.class);
 
-   public static void main(String args[]) {
+   public static void main(String args[]) throws IOException {
       ArgsParser parsedargs = new ArgsParser(args, "configfile baselineext {resultsext}");
       TestSet testset = new TestSet(new Repository(parsedargs.get("configfile")));
       testset.getQrels();

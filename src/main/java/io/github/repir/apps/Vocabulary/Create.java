@@ -2,8 +2,8 @@ package io.github.repir.apps.Vocabulary;
 
 import io.github.repir.EntityReader.MapReduce.EntityReaderInputFormat;
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.ClassTools;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.ClassTools;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.tools.hadoop.Job;
 import java.lang.reflect.Constructor;
 import org.apache.hadoop.fs.Path;
@@ -41,9 +41,10 @@ public class Create {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args);
+      repository.getConf().setReduceSpeculativeExecution(false);
       repository.deleteMasterFile();
-      repository.getConfiguration().setInt("mapreduce.tasktracker.map.tasks.maximum", 1);
-      Job job = new Job(repository.getConfiguration(), "Vocabulary Builder " + repository.configuredString("repository.prefix"));
+      repository.getConf().setMaxSimultaneousMappers(1);
+      Job job = new Job(repository.getConf(), repository.configuredString("repository.prefix"));
       job.setNumReduceTasks(1);
       job.setMapOutputKeyClass(Text.class);
       job.setMapOutputValueClass(LongWritable.class);

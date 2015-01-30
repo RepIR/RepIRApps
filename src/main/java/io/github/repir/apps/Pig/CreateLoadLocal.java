@@ -6,9 +6,9 @@ import io.github.repir.Repository.Pig.PigTermDoc;
 import io.github.repir.Repository.Pig.PigTermDocPos;
 import io.github.repir.Repository.Repository;
 import static io.github.repir.apps.Pig.CreateTermDoc.getKeywords;
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Content.FSDir;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.io.FSPath;
+import io.github.repir.tools.lib.Log;
 import java.util.HashSet;
 
 /**
@@ -23,7 +23,7 @@ public class CreateLoadLocal {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args[0]);
-      FSDir dir = new FSDir(repository.configuredString("rr.localdir") + "pig/" + repository.getPrefix());
+      FSPath dir = new FSPath(repository.configuredString("rr.localdir") + "pig/" + repository.getPrefix());
       PigTerm term = PigTerm.get(repository);
       Datafile scriptfile = dir.getFile("terms");
       scriptfile.printf("terms = %s", term.loadLocalScript());

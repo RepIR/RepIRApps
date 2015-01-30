@@ -4,12 +4,13 @@ import io.github.repir.TestSet.ResultSets;
 import io.github.repir.tools.Excel.ExcelDoc;
 import io.github.repir.tools.Excel.ExcelSheet;
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.TestSet.Metric.QueryMetricAP;
 import io.github.repir.TestSet.TestSet;
 import java.util.TreeMap;
 import io.github.repir.tools.Excel.ExcelCell;
-import io.github.repir.tools.Lib.ArgsParser;
+import io.github.repir.tools.lib.ArgsParser;
+import java.io.IOException;
 
 /**
  * reports MAP and TTest p-values for a range of test sets and systems into an
@@ -26,7 +27,7 @@ public class RIToExcel {
    public String systems[];
    public ResultSets sets[];
 
-   public RIToExcel(String filename, String collections[], String systems[]) {
+   public RIToExcel(String filename, String collections[], String systems[]) throws IOException {
       workbook = new ExcelDoc(filename);
       this.collections = collections;
       this.systems = systems;
@@ -52,7 +53,7 @@ public class RIToExcel {
       workbook.write();
    }
 
-   public static void main(String[] args) {
+   public static void main(String[] args) throws IOException {
       ArgsParser ar = new ArgsParser( args , "collections systems");
       String collections[] = ar.get("collections").split(",");
       String systems[] = ar.get("systems").split(",");

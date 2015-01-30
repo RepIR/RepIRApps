@@ -6,13 +6,13 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Document;
 import io.github.repir.Retriever.Retriever;
 import io.github.repir.Retriever.Query;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.TestSet.Metric.QueryMetricAP;
 import io.github.repir.MapReduceTools.RRConfiguration;
 import io.github.repir.TestSet.Metric.QueryMetricPrecision;
 import io.github.repir.TestSet.Metric.QueryMetricRecall;
 import io.github.repir.TestSet.ResultSet;
-import io.github.repir.tools.Lib.StrTools;
+import io.github.repir.tools.lib.StrTools;
 
 /**
  * Retrieves a query from a test set without using MR
@@ -25,7 +25,7 @@ public class QueryFromTestSetNoMR {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args, "topicid {query}");
-      RRConfiguration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConf();
       Retriever retriever = new Retriever(repository);
       TestSet testset = new TestSet(repository);
       int topic = conf.getInt("topicid", 0);
@@ -47,7 +47,7 @@ public class QueryFromTestSetNoMR {
               r.queryresult[0], 
               r2.queryresult[0], 
               r3.queryresult[0], 
-              io.github.repir.tools.Lib.ArrayTools.concat(ap.curve));
+              io.github.repir.tools.lib.ArrayTools.toString(ap.curve));
       int rank = 1;
       for (Document d : q.getQueryResults()) {
          log.printf("%b %d %d#%d %f %s %s", testset.isRelevant(qrelid, d) > 0, rank++, d.docid, d.partition, d.score,

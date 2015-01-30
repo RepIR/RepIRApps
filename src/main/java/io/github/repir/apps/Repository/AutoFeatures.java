@@ -5,7 +5,7 @@ import io.github.repir.Repository.ReducibleFeature;
 import io.github.repir.Repository.ReduciblePartitionedFeature;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.StoredFeature;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import java.util.ArrayList;
 /**
  *

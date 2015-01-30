@@ -1,9 +1,9 @@
 package io.github.repir.apps.SpamSubSet;
 
 import io.github.repir.EntityReader.SpamFile;
-import io.github.repir.tools.Content.Datafile;
+import io.github.repir.tools.io.Datafile;
 import io.github.repir.MapReduceTools.RRConfiguration;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import java.io.IOException;
 import java.util.HashMap;
 import org.apache.hadoop.io.LongWritable;

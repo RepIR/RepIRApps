@@ -1,7 +1,7 @@
 package io.github.repir.apps.Pig;
 
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.tools.hadoop.Job;
 import io.github.repir.MapReduceTools.StringInputFormat;
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class StringPigJob extends Job {
    public StringInputFormat inputformat;
 
    public StringPigJob(Repository repository) throws IOException {
-      super(repository.getConfiguration(), "Context collector " + repository.configuredString("rr.conf"));
+      super(repository.getConf(), repository.configuredString("rr.conf"));
       inputformat = new StringInputFormat(repository);
       setMapOutputKeyClass(NullWritable.class);
       setMapOutputValueClass(NullWritable.class);

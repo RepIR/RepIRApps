@@ -3,14 +3,15 @@ package io.github.repir.apps.Eval;
 import io.github.repir.tools.Excel.ExcelDoc;
 import io.github.repir.tools.Excel.ExcelSheet;
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.TestSet.ResultSets;
 import io.github.repir.TestSet.TestSet;
 import java.util.Map;
 import java.util.TreeMap;
 import io.github.repir.TestSet.Metric.QueryMetricNDCG;
 import io.github.repir.TestSet.Topic.TestSetTopic;
-import io.github.repir.tools.Lib.ArgsParser;
+import io.github.repir.tools.lib.ArgsParser;
+import java.io.IOException;
 
 /**
  * outputs a set of results files with the same test set to excel. The output is
@@ -22,7 +23,7 @@ public class NDCGToExcel {
 
    public static Log log = new Log(NDCGToExcel.class);
 
-   public static void main(String args[]) {
+   public static void main(String args[]) throws IOException {
       Repository repository = new Repository(args, "{resultsext}");
       TestSet testset = new TestSet( repository );
       ResultSets resultsets = new ResultSets( new QueryMetricNDCG(1000), testset, repository.configuredStrings("resultsext"));

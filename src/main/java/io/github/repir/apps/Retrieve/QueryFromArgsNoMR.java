@@ -5,8 +5,8 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Document;
 import io.github.repir.Retriever.Query;
 import io.github.repir.Retriever.Retriever;
-import io.github.repir.tools.Lib.Log;
-import io.github.repir.tools.Lib.StrTools;
+import io.github.repir.tools.lib.Log;
+import io.github.repir.tools.lib.StrTools;
 
 /**
  * Retrieves a single query without MR, and shows top-10 docs

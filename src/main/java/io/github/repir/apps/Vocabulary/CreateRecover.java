@@ -1,8 +1,8 @@
 package io.github.repir.apps.Vocabulary;
 
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.MapReduceTools.NullInputFormat;
 import io.github.repir.tools.hadoop.Job;
 import org.apache.hadoop.io.LongWritable;
@@ -25,9 +25,9 @@ public class CreateRecover {
       // rename voctf.temp to voctf.temp.in
       Datafile tempfile = VocTFFile.getVocTFFile(repository).getTempfile();
       if (!tempfile.rename(tempfile.getSubFile(".in")))
-         log.fatal("cannot rename %s", tempfile.getFullPath());
+         log.fatal("cannot rename %s", tempfile.getCanonicalPath());
       
-      Job job = new Job(repository.getConfiguration(), "Vocabulary Recovery " + repository.configuredString("repository.prefix"));
+      Job job = new Job(repository.getConf(), repository.configuredString("repository.prefix"));
       job.setNumReduceTasks(1);
       job.setMapOutputKeyClass(Text.class);
       job.setMapOutputValueClass(LongWritable.class);

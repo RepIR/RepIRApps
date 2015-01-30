@@ -1,9 +1,10 @@
 package util;
 
-import io.github.repir.tools.Extractor.DefaultTokenizer;
-import io.github.repir.tools.Extractor.HtmlTitleExtractor;
-import io.github.repir.tools.Lib.Log;
-import io.github.repir.tools.Lib.WebTools;
+import io.github.repir.tools.extract.DefaultTokenizer;
+import io.github.repir.tools.extract.HtmlTitleExtractor;
+import io.github.repir.tools.lib.Log;
+import io.github.repir.tools.lib.WebTools;
+import io.github.repir.tools.lib.WebTools.UrlResult;
 import java.util.ArrayList;
 
 public class readTitleUrl {
@@ -14,9 +15,9 @@ public class readTitleUrl {
        HtmlTitleExtractor titleextractor = new HtmlTitleExtractor();
        DefaultTokenizer tokenizer = new DefaultTokenizer();
        
-       byte content[] = WebTools.getUrlByteArray(args[0]);
+       UrlResult result = WebTools.getUrlByteArray(args[0]);
        
-       ArrayList<String> extract = titleextractor.extract(content);
+       ArrayList<String> extract = titleextractor.extract(result.content);
        if (extract.size() > 0) {
            log.info("literal: %s", extract.get(0));
            log.info("tokenized: %s", tokenizer.tokenize(extract.get(0)));

@@ -8,7 +8,7 @@ import io.github.repir.Repository.Pig.PigDoc.Tuple;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Document;
 import io.github.repir.MapReduceTools.RRConfiguration;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.apache.hadoop.io.IntWritable;
@@ -35,7 +35,7 @@ public class DocMap extends Mapper<IntWritable, NullWritable, NullWritable, Null
    @Override
    protected void setup(Mapper.Context context) throws IOException, InterruptedException {
       repository = new Repository(context.getConfiguration());
-      conf = repository.getConfiguration();
+      conf = repository.getConf();
    }
 
    @Override

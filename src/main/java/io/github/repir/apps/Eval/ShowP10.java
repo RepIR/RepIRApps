@@ -2,10 +2,11 @@ package io.github.repir.apps.Eval;
 
 import io.github.repir.TestSet.TestSet;
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.TestSet.Metric.QueryMetricPrecision;
 import io.github.repir.TestSet.ResultSets;
-import io.github.repir.tools.Lib.ArgsParser;
+import io.github.repir.tools.lib.ArgsParser;
+import java.io.IOException;
 
 /**
  * Show Precision@10 for set of results files for same test set
@@ -16,7 +17,7 @@ public class ShowP10 {
 
    public static Log log = new Log(ShowP10.class);
 
-   public static void main(String args[]) {
+   public static void main(String args[]) throws IOException {
       ArgsParser parsedargs = new ArgsParser(args, "configfile {resultsext}");
       TestSet testset = new TestSet(new Repository(parsedargs.get("configfile")));
       ResultSets resultset = new ResultSets( new QueryMetricPrecision( 20 ), testset, parsedargs.getStrings("resultsext"));

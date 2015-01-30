@@ -1,7 +1,7 @@
 package io.github.repir.apps.NewIndex;
 
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 
 /**
  * Sets up a new Repository, extracts the configured {@link DictionaryFeature}s 

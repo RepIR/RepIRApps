@@ -1,6 +1,6 @@
 package util;
 
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.Repository.PartitionLocation;
 import io.github.repir.Repository.Repository;
 import io.github.repir.MapReduceTools.RRConfiguration;
@@ -17,7 +17,7 @@ public class CreatePartitionLocation {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args, "");
-      RRConfiguration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConf();
       PartitionLocation partitionlocations = repository.getPartitionLocation();
       partitionlocations.openWrite();
       for (int partition = 0; partition < repository.getPartitions(); partition++) {

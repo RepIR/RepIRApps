@@ -8,8 +8,9 @@ import io.github.repir.tools.Excel.ExcelCell;
 import io.github.repir.tools.Excel.ExcelDoc;
 import io.github.repir.tools.Excel.ExcelRange;
 import io.github.repir.tools.Excel.ExcelSheet;
-import io.github.repir.tools.Lib.ArgsParser;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.ArgsParser;
+import io.github.repir.tools.lib.Log;
+import java.io.IOException;
 import java.util.TreeMap;
 
 /**
@@ -28,7 +29,7 @@ public class SigToExcel {
    public ResultSets sets[];
    public String bas;
 
-   public SigToExcel(String filename, String collections[], String systems[]) {
+   public SigToExcel(String filename, String collections[], String systems[]) throws IOException {
       workbook = new ExcelDoc(filename);
       this.bas = bas;
       this.collections = collections;
@@ -77,7 +78,7 @@ public class SigToExcel {
       workbook.write();
    }
 
-   public static void main(String[] args) {
+   public static void main(String[] args) throws IOException {
       ArgsParser ar = new ArgsParser( args , "collections systems [filename]");
       String collections[] = ar.get("collections").split(",");
       String systems[] = ar.get("systems").split(",");

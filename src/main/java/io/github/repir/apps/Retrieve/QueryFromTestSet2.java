@@ -6,9 +6,9 @@ import io.github.repir.TestSet.TestSet;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Document;
 import io.github.repir.Retriever.Query;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import java.util.ArrayList;
-import io.github.repir.tools.Lib.StrTools;
+import io.github.repir.tools.lib.StrTools;
 
 /**
  * retrieve a query from test set

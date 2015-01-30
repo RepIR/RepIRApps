@@ -1,16 +1,16 @@
 package io.github.repir.apps.Feature;
 
-import io.github.repir.EntityReader.MapReduce.EntityWritable;
 import io.github.repir.EntityReader.MapReduce.TermEntityKey;
 import io.github.repir.EntityReader.MapReduce.TermEntityValue;
-import io.github.repir.tools.Extractor.Extractor;
+import io.github.repir.tools.extract.ExtractorConf;
 import io.github.repir.Repository.AutoTermDocumentFeature;
 import io.github.repir.Repository.DocLiteral;
 import io.github.repir.Repository.Feature;
 import io.github.repir.Repository.ReduciblePartitionedFeature;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.StoredFeature;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.extract.Content;
+import io.github.repir.tools.lib.Log;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.apache.hadoop.fs.FileSystem;
@@ -27,10 +27,10 @@ import org.apache.hadoop.mapreduce.lib.input.FileSplit;
  * to TermID's.
  * @author jer
  */
-public class RMap extends Mapper<LongWritable, EntityWritable, TermEntityKey, TermEntityValue> {
+public class RMap extends Mapper<LongWritable, Content, TermEntityKey, TermEntityValue> {
 
    public static Log log = new Log(RMap.class);
-   private Extractor extractor;
+   private ExtractorConf extractor;
    private Repository repository;
    private FileSystem fs;
    private FileSplit filesplit;
@@ -52,24 +52,24 @@ public class RMap extends Mapper<LongWritable, EntityWritable, TermEntityKey, Te
                termdocfeatures.add((AutoTermDocumentFeature) f);
             }
       }
-      extractor = new Extractor(repository.getConfiguration());
+      extractor = new ExtractorConf(repository.getConf());
       fs = repository.getFS();
       filesplit = ((FileSplit) context.getInputSplit());
    }
 
    @Override
-   public void map(LongWritable inkey, EntityWritable value, Context context) throws IOException, InterruptedException {
-      extractor.process(value.entity);
-      if (value.entity.size() > 0) {
-         String docid = collectionid.extract(value.entity);
+   public void map(LongWritable inkey, Content value, Context context) throws IOException, InterruptedException {
+      extractor.process(value);
+      if (value.size() > 0) {
+         String docid = collectionid.extract(value);
          int partition = Repository.getPartition(docid, repository.getPartitions());
             for (int feature = 0; feature < documentfeatures.size(); feature++) {
                ReduciblePartitionedFeature sf = documentfeatures.get(feature);
-               sf.writeMap(context, partition, feature, docid, value.entity);
+               sf.writeMap(context, partition, feature, docid, value);
             }
             for (int feature = 0; feature < termdocfeatures.size(); feature++) {
                AutoTermDocumentFeature tdf = termdocfeatures.get(feature);
-               tdf.writeMap(context, partition, feature, docid, value.entity);
+               tdf.writeMap(context, partition, feature, docid, value);
             }
       }
       context.progress();

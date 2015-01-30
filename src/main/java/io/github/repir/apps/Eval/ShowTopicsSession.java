@@ -4,7 +4,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.TestSet.TestSet;
 import io.github.repir.TestSet.Topic.TestSetTopic;
 import io.github.repir.TestSet.Topic.TestSetTopicSession;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import java.util.Map;
 import java.util.TreeMap;
 

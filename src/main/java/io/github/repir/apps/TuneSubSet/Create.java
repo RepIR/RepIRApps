@@ -1,7 +1,7 @@
 package io.github.repir.apps.TuneSubSet;
 
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.tools.hadoop.Job;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -38,7 +38,7 @@ public class Create {
       String inputdir = repository.configuredString("repository.subsetinput", "input/clueweb/subset.input");
       String outputdir = "dummy";
       repository.getFS().delete(new Path(outputdir), true);
-      Job job = new Job(repository.getConfiguration(), "subset list generator");
+      Job job = new Job(repository.getConf(), repository.configurationName(), inputdir);
       job.setMapperClass(Map.class);
       job.setNumReduceTasks(0);
       FileInputFormat.setMinInputSplitSize(job, Long.MAX_VALUE);

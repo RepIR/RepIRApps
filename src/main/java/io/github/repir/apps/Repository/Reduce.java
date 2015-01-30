@@ -10,7 +10,7 @@ import io.github.repir.Repository.ReduciblePartitionedFeature;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.StoredFeature;
 import io.github.repir.Repository.StringLookupFeature;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.tools.hadoop.Job;
 import java.io.IOException;
 import java.util.ArrayList;

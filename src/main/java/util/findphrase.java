@@ -10,9 +10,9 @@ import io.github.repir.Strategy.Operator.Operator;
 import io.github.repir.Retriever.Query;
 import io.github.repir.Retriever.Retriever;
 import io.github.repir.Strategy.RetrievalModel;
-import io.github.repir.tools.Lib.ArgsParser;
-import io.github.repir.tools.Lib.Log;
-import io.github.repir.tools.Lib.StrTools;
+import io.github.repir.tools.lib.ArgsParser;
+import io.github.repir.tools.lib.Log;
+import io.github.repir.tools.lib.StrTools;
 
 public class findphrase {
 

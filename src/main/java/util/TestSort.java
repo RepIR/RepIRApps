@@ -1,10 +1,10 @@
 package util;
 
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Lib.Log;
-import io.github.repir.tools.Structure.StructuredDataStream;
-import io.github.repir.tools.Structure.StructuredFileSort;
-import io.github.repir.tools.Structure.StructuredFileSortRecord;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.lib.Log;
+import io.github.repir.tools.io.struct.StructuredDataStream;
+import io.github.repir.tools.io.struct.StructuredFileSort;
+import io.github.repir.tools.io.struct.StructuredFileSortRecord;
 import util.TestSort.SortFile.Record;
 
 /**

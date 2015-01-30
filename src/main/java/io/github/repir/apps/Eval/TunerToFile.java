@@ -3,9 +3,9 @@ package io.github.repir.apps.Eval;
 import io.github.repir.Repository.ModelParameters;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Tuner.Retriever;
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Lib.ArgsParser;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.lib.ArgsParser;
+import io.github.repir.tools.lib.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 

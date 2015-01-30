@@ -1,7 +1,7 @@
 package util;
 
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 
 public class getConfigurationValue {
 

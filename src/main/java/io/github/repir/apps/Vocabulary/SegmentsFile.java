@@ -1,7 +1,7 @@
 package io.github.repir.apps.Vocabulary;
 
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Structure.StructuredTextTSV;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.io.struct.StructuredTextTSV;
 
 /**
  * The segments written for VocTFFile, that enable recovery.

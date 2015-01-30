@@ -8,8 +8,8 @@ import io.github.repir.Retriever.Query;
 import io.github.repir.TestSet.Metric.QueryMetricAP;
 import io.github.repir.TestSet.ResultSet;
 import io.github.repir.TestSet.TestSet;
-import io.github.repir.tools.Lib.Log;
-import io.github.repir.tools.Lib.StrTools;
+import io.github.repir.tools.lib.Log;
+import io.github.repir.tools.lib.StrTools;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +29,7 @@ public class QueryFromTestSet {
       Query q = testset.getQuery(topic, retriever);
       DocLiteral literaltitle = DocLiteral.get(repository, "literaltitle");
       q.addFeature(literaltitle);
-      if (repository.getConfiguration().getStrings("query").length > 0) {
+      if (repository.getConf().getStrings("query").length > 0) {
          q.originalquery = StrTools.concat(' ', repository.configuredStrings("query"));
          q.query = retriever.tokenizeString(q.originalquery);
       }
@@ -39,7 +39,7 @@ public class QueryFromTestSet {
       
       QueryMetricAP ap = new QueryMetricAP();
       ResultSet resultstat = new ResultSet( ap, testset, result);
-      log.info("query %d '%s' MAP=%f\n%s", q.id, q.query, resultstat.queryresult[0], io.github.repir.tools.Lib.ArrayTools.concat(ap.curve));
+      log.info("query %d '%s' MAP=%f\n%s", q.id, q.query, resultstat.queryresult[0], io.github.repir.tools.lib.ArrayTools.toString(ap.curve));
       int rank = 1;
       for (Document d : result.getQueryResults()) {
          log.printf("%d %d#%d %s %f %s", rank++, d.docid, d.partition,

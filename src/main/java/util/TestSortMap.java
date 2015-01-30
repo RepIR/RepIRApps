@@ -1,15 +1,12 @@
 package util;
 
 import io.github.repir.Repository.Repository;
-import io.github.repir.apps.Vocabulary.RecoverMap;
-import io.github.repir.apps.Vocabulary.Reduce;
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Lib.Log;
-import io.github.repir.MapReduceTools.RRConfiguration;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.MapReduceTools.NullInputFormat;
-import io.github.repir.tools.Structure.StructuredDataStream;
-import io.github.repir.tools.Structure.StructuredFileSort;
-import io.github.repir.tools.Structure.StructuredFileSortRecord;
+import io.github.repir.tools.io.struct.StructuredDataStream;
+import io.github.repir.tools.io.struct.StructuredFileSort;
+import io.github.repir.tools.io.struct.StructuredFileSortRecord;
 import io.github.repir.tools.hadoop.Job;
 import java.io.IOException;
 import org.apache.hadoop.fs.FileSystem;
@@ -29,7 +26,7 @@ public class TestSortMap extends Mapper<IntWritable, NullWritable, NullWritable,
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
       Repository repository = new Repository(args, "");
       
-      Job job = new Job(repository.getConfiguration(), "FileSort test ");
+      Job job = new Job(repository.getConf(), repository.configurationName());
       job.setNumReduceTasks(0);
       job.setMapOutputKeyClass(NullWritable.class);
       job.setMapOutputValueClass(NullWritable.class);

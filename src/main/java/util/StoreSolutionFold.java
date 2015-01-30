@@ -4,9 +4,10 @@ import io.github.repir.Repository.ModelParameters;
 import io.github.repir.Repository.ModelParameters.Record;
 import io.github.repir.Repository.Repository;
 import io.github.repir.TestSet.TestSet;
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Lib.ArrayTools;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.lib.ArrayTools;
+import io.github.repir.tools.lib.Log;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeSet;
@@ -20,7 +21,7 @@ public class StoreSolutionFold {
    public static Log log = new Log(StoreSolutionFold.class);
    int folds = 10;
 
-   public StoreSolutionFold(Repository repository) {
+   public StoreSolutionFold(Repository repository) throws IOException {
       HashMap<Record, Record> results[] = new HashMap[folds];
          ModelParameters modelparameters = ModelParameters.get(repository, repository.configurationName());
       modelparameters.setDataBufferSize(1000000);
@@ -67,7 +68,7 @@ public class StoreSolutionFold {
          for (String p : repository.getFreeParameters().keySet()) {
             list.add(p + "=" + maxrecord[fold].parameters.get(p));
          }
-         String confsetting = ArrayTools.concatStr(list, ",");
+         String confsetting = ArrayTools.toString(list, ",");
 
          for (int topic = topicstart; topic < topicend; topic++) {
             configfile.printf("query.%d=%s\n", topic, confsetting);

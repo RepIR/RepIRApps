@@ -3,7 +3,7 @@ package io.github.repir.apps.Retrieve;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Query;
 import io.github.repir.Retriever.MapReduce.Retriever;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.TestSet.ResultFileRR;
 import java.util.ArrayList;
 import io.github.repir.MapReduceTools.RRConfiguration;
@@ -20,7 +20,7 @@ public class RecoverTestSet {
 
    public static void main(String[] args) throws Exception {
       Repository repository = new Repository(args, "resultsfileext path");
-      RRConfiguration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConf();
       String path = conf.get("retriever.tempdir", "") + repository.configuredString("path");
       Retriever retriever = new Retriever(repository);
       TestSet testset = new TestSet( repository );

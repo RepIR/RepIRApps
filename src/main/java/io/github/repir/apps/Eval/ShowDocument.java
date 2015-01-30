@@ -10,8 +10,8 @@ import io.github.repir.Retriever.Document;
 import io.github.repir.Retriever.Query;
 import io.github.repir.Retriever.Retriever;
 import io.github.repir.Strategy.RetrievalModel;
-import io.github.repir.tools.Lib.ArrayTools;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.ArrayTools;
+import io.github.repir.tools.lib.Log;
 import java.util.ArrayList;
 
 /**
@@ -48,7 +48,7 @@ public class ShowDocument {
       log.printf("doc %5d#%3d id %s title %s", doc.docid, doc.partition,
               doc.getString(collectionid),
               doc.getString(title));
-      log.printf("%s", ArrayTools.concat( value ));
+      log.printf("%s", ArrayTools.toString( value ));
       log.printf("%s", termstring.getContentStr( value ));
    }
 }

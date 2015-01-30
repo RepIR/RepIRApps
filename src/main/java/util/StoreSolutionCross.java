@@ -5,9 +5,9 @@ import io.github.repir.Repository.ModelParameters.Record;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Tuner.Parameter;
 import io.github.repir.TestSet.TestSet;
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Lib.ArrayTools;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.lib.ArrayTools;
+import io.github.repir.tools.lib.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -59,7 +59,7 @@ public class StoreSolutionCross {
          for (String p : repositories[subset].getFreeParameters().keySet()) {
             list.add(p + "=" + maxrecord[subset].parameters.get(p));
          }
-         String confsetting = ArrayTools.concatStr(list, ",");
+         String confsetting = ArrayTools.toString(list, ",");
 
          Datafile configfile = new Datafile(repositories[subset].getParameterFile());
          configfile.openWrite();

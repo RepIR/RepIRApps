@@ -1,7 +1,7 @@
 package io.github.repir.apps.SpamSubSet;
 
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.tools.hadoop.Job;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -21,7 +21,7 @@ public class Create {
       String inputfile = repository.configuredString("splitspamrank.inputfile", "input/clueweb/clueweb09spam.Fusion");
       String outputdir = repository.configuredString("splitspamrank.outputdir", "dummy");
       repository.getFS().delete(new Path(outputdir), true);
-      Job job = new Job(repository.getConfiguration(), "Waterloo Clueweb Spam ranking");
+      Job job = new Job(repository.getConf(), args[0]);
       job.setNumReduceTasks(0);
       job.setMapperClass(Map.class);
       FileInputFormat.setMinInputSplitSize(job, Long.MAX_VALUE);

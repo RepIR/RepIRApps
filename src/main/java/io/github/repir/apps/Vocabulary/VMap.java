@@ -1,17 +1,15 @@
 package io.github.repir.apps.Vocabulary;
 
-import io.github.repir.EntityReader.MapReduce.EntityWritable;
-import io.github.repir.tools.Extractor.EntityChannel;
-import io.github.repir.tools.Extractor.Extractor;
+import io.github.repir.tools.extract.ExtractChannel;
+import io.github.repir.tools.extract.ExtractorConf;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.TermInverted;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.extract.Content;
+import io.github.repir.tools.lib.Log;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -23,10 +21,10 @@ import org.apache.hadoop.mapreduce.lib.input.FileSplit;
  * along with their collection statistics.
  * @author jer
  */
-public class VMap extends Mapper<LongWritable, EntityWritable, Text, LongWritable> {
+public class VMap extends Mapper<LongWritable, Content, Text, LongWritable> {
 
    public static Log log = new Log(VMap.class);
-   private Extractor extractor;
+   private ExtractorConf extractor;
    private Repository repository;
    private FileSystem fs;
    private FileSplit filesplit;
@@ -40,17 +38,17 @@ public class VMap extends Mapper<LongWritable, EntityWritable, Text, LongWritabl
       repository = new Repository(context.getConfiguration());
       fs = repository.getFS();
       filesplit = ((FileSplit) context.getInputSplit());
-      extractor = new Extractor(repository.getConfiguration());
+      extractor = new ExtractorConf(repository.getConf());
       all = TermInverted.get(repository, "all");
    }
 
    @Override
-   public void map(LongWritable key, EntityWritable value, Context context) throws IOException, InterruptedException {
-      extractor.process(value.entity);
-      if (value.entity.size() > 0) {
+   public void map(LongWritable key, Content value, Context context) throws IOException, InterruptedException {
+      extractor.process(value);
+      if (value.size() > 0) {
          doccount++;
          HashSet<String> termsindocument = new HashSet<String>();
-         for (Map.Entry<String, EntityChannel> e : value.entity.entrySet()) {
+         for (Map.Entry<String, ExtractChannel> e : value.entrySet()) {
             if (e.getKey().equals(all.entityAttribute())) {
                for (String chunk : e.getValue()) {
                   termsindocument.add(chunk);

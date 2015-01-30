@@ -2,7 +2,7 @@ package io.github.repir.apps.Retrieve;
 
 import io.github.repir.Repository.Repository;
 import io.github.repir.Retriever.Query;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.TestSet.ResultFileRR;
 import java.util.ArrayList;
 import io.github.repir.Retriever.MapOnly.RetrieverM;

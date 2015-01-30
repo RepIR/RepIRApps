@@ -5,7 +5,7 @@ import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.TermDF;
 import io.github.repir.Repository.TermString;
 import io.github.repir.Repository.TermCF;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 
 /**
  * Shows the top-10000 terms in the vocabulary
@@ -20,7 +20,7 @@ public class ShowTermID {
       TermString termstring = TermString.get(repository);
       TermDF df = TermDF.get(repository);
       TermCF cf = TermCF.get(repository);
-      if (repository.getConfiguration().containsKey("termid")) {
+      if (repository.getConf().containsKey("termid")) {
           int termid = repository.configuredInt("termid");
           String s = termstring.readValue(termid);
           log.printf("Term %d is %s df %d cf %d", termid, s, df.readValue(termid), cf.readValue(termid));

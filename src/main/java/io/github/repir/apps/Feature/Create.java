@@ -6,8 +6,8 @@ import io.github.repir.EntityReader.MapReduce.TermEntityValue;
 import io.github.repir.Repository.Repository;
 import io.github.repir.Repository.StoredFeature;
 import io.github.repir.MapReduceTools.RRConfiguration;
-import static io.github.repir.tools.Lib.ClassTools.*;
-import io.github.repir.tools.Lib.Log;
+import static io.github.repir.tools.lib.ClassTools.*;
+import io.github.repir.tools.lib.Log;
 import io.github.repir.tools.hadoop.Job;
 import java.lang.reflect.Constructor;
 import org.apache.hadoop.io.NullWritable;
@@ -41,9 +41,9 @@ public class Create {
 
    public static void main(String[] args) throws Exception {
        Repository repository = new Repository(args, "{feature}");
-      RRConfiguration conf = repository.getConfiguration();
+      RRConfiguration conf = repository.getConf();
       conf.setStrings("repository.constructfeatures", conf.getStrings("feature"));
-      Job job = new Job(conf, "Repository Builder " + conf.get("repository.prefix"));
+      Job job = new Job(conf, conf.get("repository.prefix"));
       int partitions = conf.getInt("repository.partitions", -1);
       job.setNumReduceTasks(partitions);
       job.setPartitionerClass(TermEntityKey.partitioner.class);

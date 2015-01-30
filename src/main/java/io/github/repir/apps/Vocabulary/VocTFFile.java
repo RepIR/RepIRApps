@@ -1,11 +1,11 @@
 package io.github.repir.apps.Vocabulary;
 
 import io.github.repir.Repository.Repository;
-import io.github.repir.tools.Content.Datafile;
-import io.github.repir.tools.Structure.StructuredFileSort;
-import static io.github.repir.tools.Structure.StructuredFileSort.log;
-import io.github.repir.tools.Structure.StructuredFileSortReader;
-import io.github.repir.tools.Structure.StructuredFileSortRecord;
+import io.github.repir.tools.io.Datafile;
+import io.github.repir.tools.io.struct.StructuredFileSort;
+import static io.github.repir.tools.io.struct.StructuredFileSort.log;
+import io.github.repir.tools.io.struct.StructuredFileSortReader;
+import io.github.repir.tools.io.struct.StructuredFileSortRecord;
 import java.util.ArrayList;
 
 /**

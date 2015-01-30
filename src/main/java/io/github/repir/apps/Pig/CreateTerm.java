@@ -7,7 +7,7 @@ import io.github.repir.Repository.Term;
 import io.github.repir.Repository.TermCF;
 import io.github.repir.Repository.TermDF;
 import static io.github.repir.apps.Pig.CreateTermDoc.getKeywords;
-import io.github.repir.tools.Lib.Log;
+import io.github.repir.tools.lib.Log;
 import java.util.ArrayList;
 import java.util.HashSet;
 

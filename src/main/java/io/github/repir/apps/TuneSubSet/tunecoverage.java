@@ -34,7 +34,7 @@ public class tunecoverage {
       subset.setBufferSize(100000000);
       try {
          while (subset.hasMore()) {
-            String readString = subset.findString(cluewebidpattern);
+            String readString = subset.readString(cluewebidpattern);
             ids.add(readString);
          }
       } catch (EOCException ex) { }

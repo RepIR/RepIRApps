@@ -24,7 +24,7 @@ public class CreateRecover {
 
       // rename voctf.temp to voctf.temp.in
       Datafile tempfile = VocTFFile.getVocTFFile(repository).getTempfile();
-      if (!tempfile.rename(tempfile.getSubFile(".in")))
+      if (!tempfile.move(tempfile.getSubFile(".in")))
          log.fatal("cannot rename %s", tempfile.getCanonicalPath());
       
       Job job = new Job(repository.getConf(), repository.configuredString("repository.prefix"));

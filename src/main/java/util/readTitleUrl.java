@@ -3,8 +3,8 @@ package util;
 import io.github.repir.tools.extract.DefaultTokenizer;
 import io.github.repir.tools.extract.HtmlTitleExtractor;
 import io.github.repir.tools.lib.Log;
-import io.github.repir.tools.lib.WebTools;
-import io.github.repir.tools.lib.WebTools.UrlResult;
+import io.github.repir.tools.io.web.WebTools;
+import io.github.repir.tools.io.web.WebTools.UrlResult;
 import java.util.ArrayList;
 
 public class readTitleUrl {
@@ -15,7 +15,7 @@ public class readTitleUrl {
        HtmlTitleExtractor titleextractor = new HtmlTitleExtractor();
        DefaultTokenizer tokenizer = new DefaultTokenizer();
        
-       UrlResult result = WebTools.getUrlByteArray(args[0]);
+       UrlResult result = WebTools.getUrlResult(args[0]);
        
        ArrayList<String> extract = titleextractor.extract(result.content);
        if (extract.size() > 0) {

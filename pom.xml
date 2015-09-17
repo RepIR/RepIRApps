@@ -3,63 +3,27 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.repir</groupId>
-        <artifactId>RepIRProx</artifactId>
-        <version>0.26-SNAPSHOT</version>
-        <relativePath>../RepIRProx/pom.xml</relativePath>
+        <artifactId>repirparent</artifactId>
+        <version>0.26</version>
+        <relativePath>../repirparent/pom.xml</relativePath>
     </parent>
-    <artifactId>RepIRApps</artifactId>
+    <artifactId>repirapps</artifactId>
+    <version>0.26</version>
     <packaging>jar</packaging>
-    <name>RepIRApps</name>
+    <name>repirapps</name>
   
+    <description>Apps for project Repository for IR</description>
+
     <scm>
-        <connection>scm:git:git@github.com:RepIR/RepIRApps.git</connection>
-        <developerConnection>scm:git:git@github.com:RepIR/RepIRApps.git</developerConnection>
-        <url>git@github.com:RepIR/RepIRApps.git</url>
+        <connection>scm:git:git@github.com:repir/repirapps.git</connection>
+        <developerConnection>scm:git:git@github.com:repir/repirapps.git</developerConnection>
+        <url>git@github.com:repir/repirapps.git</url>
     </scm>
    
     <build>
         <sourceDirectory>${src.dir}</sourceDirectory>
         <testSourceDirectory>${test.dir}</testSourceDirectory>
         <plugins>
-            <!--plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <filters>
-                                <filter>
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <exclude>META-INF/*</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
-                            
-                            <shadedArtifactAttached>true</shadedArtifactAttached>
-                            <shadedClassifierName>fatjar</shadedClassifierName>
-                            <artifactSet>
-                                <excludes>
-                                    <exclude>org.apache.hadoop:*</exclude>
-                                </excludes>
-                            </artifactSet>
-                            <transformers>
-                                <transformer
-                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <manifestEntries>
-                                        <Main-Class>nl.surfsara.warcexamples.Main</Main-Class>
-                                    </manifestEntries>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
@@ -67,9 +31,9 @@
                 <configuration>
                     <target>  
                         <scp todir="${repirdir}" 
-                       keyfile="${keyfile}"
-                       trust="true" failonerror="false"
-                       file="${project.build.directory}/${project.build.finalName}.jar">
+                             keyfile="${keyfile}"
+                             trust="true" failonerror="false"
+                             file="${project.build.directory}/${project.build.finalName}.jar">
                         </scp>
                     </target>
                 </configuration>
@@ -91,8 +55,8 @@
    
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>RepIRTools</artifactId>
+            <groupId>io.github.htools</groupId>
+            <artifactId>htools</artifactId>
             <type>jar</type>
             <exclusions>
                 <exclusion>
@@ -103,7 +67,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>RepIR</artifactId>
+            <artifactId>repir</artifactId>
             <type>jar</type>
             <exclusions>
                 <exclusion>
@@ -111,6 +75,16 @@
                     <groupId>org.apache.hadoop</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.9</version>
         </dependency>
     </dependencies>
 </project>
